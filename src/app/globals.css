@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-padding-top: 135px;
+  }
+  body {
+    @apply font-sans;
+  }
+}
+
