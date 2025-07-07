@@ -2,3 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-padding-top: 135px;
+  }
+  
+  body {
+    @apply font-sans transition-colors duration-300;
+    color: var(--color-text-primary);
+  }
+  
+  h1 {
+    @apply text-3xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  /* Light mode styles */
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --color-text-primary: #111827; /* theme('colors.gray.900') */
+    --color-text-secondary: #6B7280; /* theme('colors.gray.600') */
+    --color-text-muted: #9CA3AF; /* theme('colors.gray.400') */
+    --color-text-inverse: #FFFFFF; /* theme('colors.white') */
+    --color-text-error: #DE2A51; /* theme('colors.red') - your custom red */
+    --color-text-success: #16A34A; /* theme('colors.green.600') */
+    --color-text-warning: #F59E42; /* theme('colors.orange') */
+    --color-text-brand-primary: #0010A4; /* theme('colors.primary') - your brand blue */
+  }
+  
+  /* Dark mode styles */
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --color-text-primary: #F3F4F6; /* theme('colors.gray.100') */
+    --color-text-secondary: #D1D5DB; /* theme('colors.gray.300') */
+    --color-text-muted: #6B7280; /* theme('colors.gray.600') */
+    --color-text-inverse: #111827; /* theme('colors.gray.900') */
+    --color-text-error: #BF243F; /* theme('colors.redHover') - your darker red */
+    --color-text-success: #4ADE80; /* theme('colors.green.400') */
+    --color-text-warning: #FBBF24; /* theme('colors.orangeHover') */
+    --color-text-brand-primary: #A5B4FC; /* theme('colors.secondaryBlue') or a lighter blue */
+  }
+  
+  .dark body {
+    @apply bg-gray-800 text-white;
+  }
+}
