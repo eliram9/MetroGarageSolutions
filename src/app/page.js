@@ -9,17 +9,23 @@ import Contact from "./components/Contact";
 import Works from "./components/Works";
 import Container from "./components/Container";
 
+
 export default function Home() {
     return (
         <div>
             <Navbar />
             <Hero />
-            {/* <Container> 
+            <Container> 
                 <About />
-                <Services />
+            </Container>     
+            <Services />
+            <Container>
                 <Works />
+            </Container>
+
+                
                 <Contact />
-            </Container> */}
+            
             <Footer />
         </div>
     );

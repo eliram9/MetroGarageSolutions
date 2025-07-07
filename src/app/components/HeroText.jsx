@@ -17,7 +17,7 @@ const HeroText = () => {
     });
 
     return (
-        <div className="text-7xl font-rubik h-24 flex items-center justify-start font-medium">
+        <div className="text-5xl md:text-6xl xl:text-7xl font-rubik h-24 flex items-center justify-start font-medium">
             <AnimatePresence mode="wait">
                 <motion.span
                     key={currentIndex}

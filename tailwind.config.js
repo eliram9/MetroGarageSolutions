@@ -8,19 +8,20 @@ module.exports = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
+    darkMode: 'class', // Add this line
     theme: {
         extend: {
             colors: {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
-                primary: "#0010A4",
+                primary: "#002C8C",
                 secondaryBlue: "#0010A4",
                 red: "#DE2A51",
-                redHover: "#BF243F", // 10% darker red
+                redHover: "#BF243F",
                 orange: "#DD6951",
-                orangeHover: "#C45C47", // 10% darker orange
-                start: "#DD6951", // Add gradient start color
-                end: "#DE2A51",  // Add gradient end color
+                orangeHover: "#C45C47",
+                start: "#DD6951",
+                end: "#DE2A51",
             },
             fontFamily: {
                 sans: ['var(--font-rubik)', ...fontFamily.sans],
@@ -28,16 +29,37 @@ module.exports = {
                 rubik: ['var(--font-rubik)', 'sans-serif'],
             },
             screens: {
-                'xs': '375px',   // Extra small devices (e.g., small phones)
-                'sm': '640px',   // Small devices (e.g., large phones)
-                'md': '768px',    // Medium devices (e.g., tablets, iPad)
-                'lg': '1024px',  // Large devices (e.g., small laptops)
-                'xl': '1280px',  // Extra large devices (e.g., desktops)
-                'xxl': '1536px', // 2X extra large devices (e.g., large desktops, 4K)
+                'xs': '375px',
+                'sm': '640px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                'xxl': '1536px',
+            },
+            animation: {
+                'spin-slow': 'spin 10s linear infinite',
+            },
+            keyframes: {
+                spin: {
+                    to: { transform: 'rotate(360deg)' },
+                },
+            },
+            textColor: {
+                primary: 'var(--color-text-primary)',
+                secondary: 'var(--color-text-secondary)',
+                muted: 'var(--color-text-muted)',
+                inverse: 'var(--color-text-inverse)',
+                error: 'var(--color-text-error)',
+                success: 'var(--color-text-success)',
+                warning: 'var(--color-text-warning)',
+                brand: 'var(--color-text-brand-primary)',
             },
         },
     },
     plugins: [
         require('@tailwindcss/typography'),
+    ],
+    safelist: [
+        'animate-spin-slow',
     ],
 };
