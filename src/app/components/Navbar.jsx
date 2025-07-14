@@ -9,12 +9,43 @@ import Text from './Text';
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 10);
+            
+            // Get all sections with their positions
+            const sections = ['about', 'services', 'works', 'contact'];
+            const scrollPosition = window.scrollY + 150; // Offset for navbar height
+            
+            let currentSection = '';
+            
+            // Check each section to see which one is currently in view
+            sections.forEach(sectionId => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = window.scrollY + rect.top;
+                    const elementBottom = elementTop + element.offsetHeight;
+                    
+                    // Check if the current scroll position is within this section
+                    if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+            
+            // If we're at the very top, no section is active
+            if (window.scrollY < 100) {
+                currentSection = '';
+            }
+            
+            setActiveSection(currentSection);
         };
+        
         window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Call once to set initial state
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -24,7 +55,7 @@ const Navbar = () => {
             <div className='bg-primary'>
                 <Container>
                     <div className='flex justify-between items-center text-white py-3'>
-                        <p className='text-xs md:text-base'>MHIC: #11-111111</p>
+                        <p className='text-xs md:text-base'>MHIC: #05-147422</p>
                         <div className='flex items-center space-x-2'>
                             <svg
                                 className="w-6 h-6 text-white"
@@ -65,16 +96,24 @@ const Navbar = () => {
                         </Link>
                         {/* Desktop Nav Links */}
                         <nav className="hidden md:flex space-x-8 items-center">
-                            <a href="#about" className="group relative font-medium pb-1 border-b-2 border-transparent hover:border-current transition-colors">
+                            <a href="#about" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'about' ? 'border-current' : 'border-transparent hover:border-current'
+                            }`}>
                                 About
                             </a>
-                            <a href="#services" className="group relative font-medium pb-1 border-b-2 border-transparent hover:border-current transition-colors">
+                            <a href="#services" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'services' ? 'border-current' : 'border-transparent hover:border-current'
+                            }`}>
                                 Services
                             </a>
-                            <a href="#work" className="group relative font-medium pb-1 border-b-2 border-transparent hover:border-current transition-colors">
+                            <a href="#works" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'works' ? 'border-current' : 'border-transparent hover:border-current'
+                            }`}>
                                 Our Work
                             </a>
-                            <a href="#contact" className="group relative font-medium pb-1 border-b-2 border-transparent hover:border-current transition-colors">
+                            <a href="#contact" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'contact' ? 'border-current' : 'border-transparent hover:border-current'
+                            }`}>
                                 Contact
                             </a>
                             <ThemeSwitcher />
@@ -93,10 +132,18 @@ const Navbar = () => {
                     {/* Mobile Menu Dropdown */}
                     {mobileMenuOpen && (
                         <div className="md:hidden flex flex-col bg-white shadow-md rounded-lg mt-2 py-4 px-6 space-y-4 absolute left-0 right-0 z-40">
-                            <a href="#about" className="font-medium" onClick={() => setMobileMenuOpen(false)}>About</a>
-                            <a href="#services" className="font-medium" onClick={() => setMobileMenuOpen(false)}>Services</a>
-                            <a href="#work" className="font-medium" onClick={() => setMobileMenuOpen(false)}>Our Work</a>
-                            <a href="#contact" className="font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+                            <a href="#about" className={`font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'about' ? 'border-current' : 'border-transparent'
+                            }`} onClick={() => setMobileMenuOpen(false)}>About</a>
+                            <a href="#services" className={`font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'services' ? 'border-current' : 'border-transparent'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Services</a>
+                            <a href="#works" className={`font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'works' ? 'border-current' : 'border-transparent'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Our Work</a>
+                            <a href="#contact" className={`font-medium pb-1 border-b-2 transition-colors ${
+                                activeSection === 'contact' ? 'border-current' : 'border-transparent'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
                             <ThemeSwitcher />
                         </div>
                     )}
