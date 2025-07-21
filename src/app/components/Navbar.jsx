@@ -17,7 +17,7 @@ const Navbar = () => {
             
             // Get all sections with their positions
             const sections = ['about', 'services', 'works', 'contact'];
-            const scrollPosition = window.scrollY + 150; // Offset for navbar height
+            const scrollPosition = window.scrollY + 200; // Increased offset for navbar height
             
             let currentSection = '';
             
@@ -29,9 +29,17 @@ const Navbar = () => {
                     const elementTop = window.scrollY + rect.top;
                     const elementBottom = elementTop + element.offsetHeight;
                     
-                    // Check if the current scroll position is within this section
-                    if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
-                        currentSection = sectionId;
+                    // For contact section, be more lenient with detection
+                    if (sectionId === 'contact') {
+                        // Activate contact when we're close to it or past it
+                        if (scrollPosition >= elementTop - 100) {
+                            currentSection = sectionId;
+                        }
+                    } else {
+                        // Check if the current scroll position is within this section
+                        if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                            currentSection = sectionId;
+                        }
                     }
                 }
             });

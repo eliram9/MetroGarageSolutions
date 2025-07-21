@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 
+import Script from 'next/script';
 import Image from 'next/image';
 import Container from './Container';
 
@@ -21,9 +24,24 @@ const Services = () => {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-6">
                     <Container>
                         <h1 className="font-md tracking-wide">OBLIGATION FREE ESTIMATE!</h1>
-                        <h3 className="font-light mt-4 pb-20">Metro Garage Solutions provides an obligation free estimate, 
+                        <h3 className="font-light mt-4 pb-10">Metro Garage Solutions provides an obligation free estimate, 
                             just call us at <span className='font-semibold'>240.688.8858</span> or click on the button below.</h3>
-                        <button className='my-3 px-5 py-3 bg-gradient-to-r from-start to-end text-white rounded-xl'>REQUESR FREE ESTIMATE!</button> 
+
+                        
+                        {/* Elfsight Google Reviews | Untitled Google Reviews */}
+                        <div className='py-10'>
+                            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                            <div class="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c" data-elfsight-app-lazy></div>
+                        </div>    
+                        <button 
+                            onClick={() => {
+                                const contactSection = document.getElementById('contact');
+                                contactSection?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className='my-3 px-5 py-3 bg-gradient-to-r from-start to-end text-white rounded-xl hover:scale-105 transition-transform cursor-pointer'
+                        >
+                            REQUEST FREE ESTIMATE!
+                        </button> 
                     </Container>
                 </div>
 

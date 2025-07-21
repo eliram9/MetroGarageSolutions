@@ -2,18 +2,19 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import worksData from "../../data/works.json";
+import imagesData from "../../data/images.json";
 
 const categoryColors = {
-  Installation: 'bg-blue-600',
-  Repair: 'bg-emerald-600',
-  Maintenance: 'bg-amber-600',
-  Commercial: 'bg-purple-600',
+  Tree: 'bg-green-600',
+  Sun: 'bg-yellow-600',
+  Whale: 'bg-blue-600',
+  Snow: 'bg-gray-600',
 };
 
-const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with center image
-  const works = worksData;
+const CarouselTest = ({ activeCategory }) => {
+  const filteredImages = activeCategory ? imagesData.filter(image => image.category === activeCategory) : imagesData;
+  const works = filteredImages;
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % works.length);
@@ -42,6 +43,12 @@ const Carousel = () => {
     setVisibleImages(getVisibleImages());
   }, [currentIndex]);
 
+  useEffect(() => {
+    if (works.length > 0) {
+      setCurrentIndex(0);
+    }
+  }, [activeCategory]);
+
   return (
     <div className="relative w-full mx-auto overflow-hidden">
       <div className="flex justify-center items-center h-[600px] relative">
@@ -52,7 +59,7 @@ const Carousel = () => {
 
           return (
             <motion.div
-              key={`${work.originalIndex}-${currentIndex}`}
+              key={`${work.id}-${currentIndex}`}
               className="absolute rounded-lg overflow-hidden cursor-pointer shadow-lg"
               initial={false}
               animate={{
@@ -64,7 +71,8 @@ const Carousel = () => {
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               onClick={() => {
                 if (position !== 0) {
-                  setCurrentIndex(work.originalIndex);
+                  const clickedIndex = works.findIndex(w => w.id === work.id);
+                  setCurrentIndex(clickedIndex);
                 }
               }}
             >
@@ -138,4 +146,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default CarouselTest;
