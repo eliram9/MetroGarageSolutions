@@ -21,6 +21,9 @@ const rubik = Rubik({
 export const metadata = {
     title: "Metro Garage Solutions",
     description: "Professional garage door solutions and services",
+    icons: {
+        icon: "/images/garage.png",
+    },
 };
 
 export default function RootLayout({ children }) {

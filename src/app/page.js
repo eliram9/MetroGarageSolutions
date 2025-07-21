@@ -19,9 +19,9 @@ export default function Home() {
                 <About />
             </Container>     
             <Services />
-            <Container>
+         
                 <Works />
-            </Container>
+          
 
                 
                 <Contact />
