@@ -151,13 +151,17 @@ const Contact = () => {
     return (
         <section id="contact">
             <Container>
-            <div className="bg-primary/10 pb-2 pt-4 rounded-xl">
-            
-                {/* <!-- Elfsight Google Reviews | Untitled Google Reviews 2 --> */}
-                <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                <div class="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>  
-                          
-            </div>
+                <div className="bg-primary/10 pb-2 pt-4 rounded-xl">
+                
+                    {/* <!-- Elfsight Google Reviews | Untitled Google Reviews 2 --> */}
+                    <div className="w-full max-w-full overflow-hidden">
+                        <div className="max-w-xs mx-auto sm:max-w-sm md:max-w-full" style={{maxWidth: '100%', overflow: 'hidden'}}>
+                            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                            <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
+                        </div>
+                    </div>  
+                            
+                </div>
             </Container>
 
             <div className='h-auto pb-20 pt-20 bg-gradient-to-b from-white via-white via-primary/50 to-primary'>

@@ -2,13 +2,12 @@
 
 import React from 'react';
 
-import Script from 'next/script';
 import Image from 'next/image';
 import Container from './Container';
 
 const Services = () => {
     return (
-        <section id='services'>
+        <section id='services' className='bg-rose-s100'>
             <div className="relative w-full h-[40vh] md:h-[50vh] font-rubik">
                 {/* Background Image */}
                 <Image src="/images/obligation.png" 
@@ -29,9 +28,11 @@ const Services = () => {
 
                         
                         {/* Elfsight Google Reviews | Untitled Google Reviews */}
-                        <div className='py-10'>
-                            <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                            <div class="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c" data-elfsight-app-lazy></div>
+                        <div className='py-10 w-full max-w-full overflow-hidden'>
+                            <div className="max-w-xs mx-auto sm:max-w-sm md:max-w-full" style={{maxWidth: '100%', overflow: 'hidden'}}>
+                                <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                                <div className="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c" data-elfsight-app-lazy></div>
+                            </div>
                         </div>    
                         <button 
                             onClick={() => {

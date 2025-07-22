@@ -9,7 +9,7 @@ import Tabs from './Tabs';
 const Works = () => {
     return (
         <section id="works" className='py-20 font-rubik text-primary'>
-            <BrandTrain />
+            {/* <BrandTrain /> */}
             <Container>
                 {/* Header */}
                 <div className='text-center'>

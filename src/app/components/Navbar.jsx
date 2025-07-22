@@ -137,24 +137,50 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                    {/* Mobile Menu Dropdown */}
+                    {/* Mobile Overlay */}
                     {mobileMenuOpen && (
-                        <div className="md:hidden flex flex-col bg-white shadow-md rounded-lg mt-2 py-4 px-6 space-y-4 absolute left-0 right-0 z-40">
-                            <a href="#about" className={`font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'about' ? 'border-current' : 'border-transparent'
-                            }`} onClick={() => setMobileMenuOpen(false)}>About</a>
-                            <a href="#services" className={`font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'services' ? 'border-current' : 'border-transparent'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Services</a>
-                            <a href="#works" className={`font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'works' ? 'border-current' : 'border-transparent'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Our Work</a>
-                            <a href="#contact" className={`font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'contact' ? 'border-current' : 'border-transparent'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
-                            <ThemeSwitcher />
+                        <div className="md:hidden fixed inset-0 z-40" onClick={() => setMobileMenuOpen(false)}>
+                            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                         </div>
                     )}
+
+                    {/* Mobile Side Drawer */}
+                    <div className={`md:hidden fixed top-0 right-0 h-full w-1/2 bg-white dark:bg-gray-800 shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
+                        mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}>
+                        {/* Close Button */}
+                        <div className="flex justify-end p-4">
+                            <button 
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                                aria-label="Close mobile menu"
+                            >
+                                <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Navigation Links */}
+                        <div className="flex flex-col px-6 space-y-6">
+                            <a href="#about" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
+                                activeSection === 'about' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                            }`} onClick={() => setMobileMenuOpen(false)}>About</a>
+                            <a href="#services" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
+                                activeSection === 'services' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Services</a>
+                            <a href="#works" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
+                                activeSection === 'works' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Our Work</a>
+                            <a href="#contact" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
+                                activeSection === 'contact' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                            }`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
+                            
+                            <div className="pt-4">
+                                <ThemeSwitcher />
+                            </div>
+                        </div>
+                    </div>
                 </Container>
             </div>
         </div>
