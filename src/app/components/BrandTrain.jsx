@@ -52,12 +52,12 @@ const BrandTrain = () => {
                          style={{animation: 'scroll 30s linear infinite'}}
                     >
                         {/* First set of logos */}
-                        <div className="flex items-center space-x-12 md:space-x-16 lg:space-x-20 min-w-max">
+                        <div className="flex items-center space-x-8 sm:space-x-12 md:space-x-16 lg:space-x-20 min-w-max">
                             {brands.map((brand, index) => (
                                 <div key={`first-${index}`}
                                      className="flex-shrink-0 transition-all duration-3000 hover:scale-110 group"
                                 >
-                                    <div className="w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
+                                    <div className="w-24 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
                                         <Image src={brand.logo}
                                                alt={brand.alt}
                                                width={200}
@@ -70,12 +70,12 @@ const BrandTrain = () => {
                         </div>
                         
                         {/* Duplicate set for seamless loop */}
-                        <div className="flex items-center space-x-12 md:space-x-16 lg:space-x-20 min-w-max ml-12 md:ml-16 lg:ml-20">
+                        <div className="flex items-center space-x-8 sm:space-x-12 md:space-x-16 lg:space-x-20 min-w-max ml-8 sm:ml-12 md:ml-16 lg:ml-20">
                             {brands.map((brand, index) => (
                                 <div key={`second-${index}`}
                                      className="flex-shrink-0 transition-all duration-300 hover:scale-110 group"
                                 >
-                                    <div className="w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
+                                    <div className="w-24 h-12 sm:w-32 sm:h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
                                         <Image src={brand.logo}
                                                alt={brand.alt}
                                                width={200}
