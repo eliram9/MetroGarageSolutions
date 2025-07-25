@@ -38,11 +38,11 @@ const BrandTrain = () => {
     ];
 
     return (
-        <div className="w-full py-12 overflow-hidden">
+        <div className="w-full my-16 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="text-center">
-                    <h1 className="pt-8 md:pt-16 font-md">TRUSTED BRANDS</h1>
-                    <h3 className="font-light mt-4 pb-4 md:pb-20">We work with industry-leading brands</h3>
+                    <h2 className='font-medium dark:text-white md:text-3xl text-2xl mb-4'>TRUSTED BRANDS</h2>
+                    <h4 className='text-md md:text-xl font-base pt-1 mb-10'>We work with industry-leading brands</h4> 
                 </div>
                 
                 {/* Carousel Container */}

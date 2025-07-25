@@ -22,9 +22,9 @@ const Services = () => {
                 {/* Text Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-20 px-6">
                     <Container>
-                        <h1 className="font-md tracking-wide">OBLIGATION FREE ESTIMATE!</h1>
-                        <h3 className="font-light mt-4 pb-10">Metro Garage Solutions provides an obligation free estimate, 
-                            just call us at <span className='font-semibold'>240.688.8858</span> or click on the button below.</h3>
+                        <h3 className="font-md tracking-wide">OBLIGATION FREE ESTIMATE!</h3>
+                        <h4 className="font-light mt-4 pb-10">Metro Garage Solutions provides an obligation free estimate, 
+                            just call us at <span className='font-semibold'>240.688.8858</span> or click on the button below.</h4>
 
                         
                         {/* Elfsight Google Reviews | Untitled Google Reviews */}
@@ -39,7 +39,7 @@ const Services = () => {
                                 const contactSection = document.getElementById('contact');
                                 contactSection?.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            className='my-3 px-5 py-3 bg-gradient-to-r from-start to-end text-white rounded-xl hover:scale-105 transition-transform cursor-pointer'
+                            className='btn-primary cursor-pointer'
                         >
                             REQUEST FREE ESTIMATE!
                         </button> 
@@ -51,8 +51,8 @@ const Services = () => {
             <div className='py-3 pb-12 relative font-rubik text-primary bg-gradient-to-tl from-primary/90 to-end/90'>
                 <Container>
                     <div className='text-center text-white'>
-                        <h1 className="pt-8 md:pt-16 font-md">OUR SERVICES</h1>
-                        <h3 className="font-light mt-4 pb-4 md:pb-20">We are doing a couple of things you might be interested in</h3>
+                        <h3 className="pt-8 md:pt-16 font-md">OUR SERVICES</h3>
+                        <h4 className="font-light mt-4 pb-4 md:pb-20">We are doing a couple of things you might be interested in</h4>
                     </div>
 
                     {/* Cards section */}

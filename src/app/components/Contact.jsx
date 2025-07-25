@@ -1,8 +1,7 @@
 "use client"; 
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Image from 'next/image';
-import ReCAPTCHA from "react-google-recaptcha";
 
 import emailjs from '@emailjs/browser';
 import Container from "./Container";
@@ -13,15 +12,13 @@ const Contact = () => {
         lastName: '',
         email: '',
         phone: '',
-        service: 'Other',
+        service: 'Door Installation',
         message: ''
     });
     
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState('');
-    const [recaptchaValue, setRecaptchaValue] = useState(null);
-    const recaptchaRef = useRef(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -122,13 +119,9 @@ const Contact = () => {
                 lastName: '',
                 email: '',
                 phone: '',
-                service: 'Other',
+                service: 'Door Installation',
                 message: ''
             });
-            setRecaptchaValue(null);
-            if (recaptchaRef.current) {
-                recaptchaRef.current.reset();
-            }
             
             // Hide success message after 5 seconds
             setTimeout(() => {
@@ -364,41 +357,37 @@ const Contact = () => {
                                 </div>
                             </div>
 
-                            {/* reCAPTCHA and Submit Button Container */}
+                            {/* Submit Button Container */}
                             <div className="md:col-span-2 mt-6">
-                                <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
-                                    {/* reCAPTCHA */}
-                                    <div className="flex justify-center">
-                                        <ReCAPTCHA
-                                            ref={recaptchaRef}
-                                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"} // Test key
-                                            onChange={(value) => {
-                                                setRecaptchaValue(value);
-                                            }}
-                                            onExpired={() => setRecaptchaValue(null)}
-                                        />
-                                    </div>
-                                    
+                                <div className="flex justify-center">
                                     {/* Submit Button */}
                                     <div className="flex justify-center">
                                         <button type="submit"
-                                                disabled={isSubmitting}
-                                                className={`my-3 px-5 py-3 text-white rounded-xl transition-all duration-300 ${
-                                                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                                                } ${
+                                                disabled={isSubmitting || !(
                                                     formData.firstName.trim() && 
                                                     formData.lastName.trim() && 
                                                     formData.email.trim() && 
                                                     formData.phone.trim() && 
                                                     formData.message.trim() && 
-                                                    recaptchaValue &&
                                                     formData.firstName.trim().length >= 2 &&
                                                     formData.lastName.trim().length >= 2 &&
                                                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
                                                     /^\d{10}$/.test(formData.phone.replace(/\D/g, '')) &&
                                                     formData.message.trim().length >= 3
-                                                    ? 'bg-gradient-to-r from-start to-end hover:opacity-90' 
-                                                    : 'bg-gray-400 cursor-not-allowed'
+                                                )}
+                                                className={`btn-primary ${
+                                                    isSubmitting || !(
+                                                        formData.firstName.trim() && 
+                                                        formData.lastName.trim() && 
+                                                        formData.email.trim() && 
+                                                        formData.phone.trim() && 
+                                                        formData.message.trim() && 
+                                                        formData.firstName.trim().length >= 2 &&
+                                                        formData.lastName.trim().length >= 2 &&
+                                                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+                                                        /^\d{10}$/.test(formData.phone.replace(/\D/g, '')) &&
+                                                        formData.message.trim().length >= 3
+                                                    ) ? '!bg-gray-400 !hover:scale-100' : ''
                                                 }`}
                                         >
                                             {isSubmitting ? 'Sending...' : 'SUBMIT'}
@@ -409,16 +398,21 @@ const Contact = () => {
 
                             {/* Status Messages */}
                             {submitStatus === 'success' && (
-                                <div className="md:col-span-2 text-green-600 text-sm">
-                                    Thank you! Your message has been sent successfully.
+                                <div className="md:col-span-2 flex items-center gap-3 text-green-800 text-sm border-2 border-green-200 rounded-lg bg-green-50 py-3 px-4 shadow-sm">
+                                    <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                                    </svg>
+                                    <span className="font-medium">Thank you! Your message has been sent successfully.</span>
                                 </div>
                             )}
                             {submitStatus === 'error' && (
-                                <div className="md:col-span-2 text-red-600 text-sm">
-                                    Sorry, there was an error sending your message. Please try again.
+                                <div className="md:col-span-2 flex items-center gap-3 text-rose-800 text-sm border-2 border-rose-200 rounded-lg bg-rose-50 py-3 px-4 shadow-sm">
+                                    <svg className="w-5 h-5 text-rose-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
+                                    </svg>
+                                    <span className="font-medium">Sorry, there was an error sending your message. Please try again.</span>
                                 </div>
                             )}
-
                         </form>
                     </div>
                 </div>

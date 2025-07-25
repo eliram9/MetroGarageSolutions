@@ -1,38 +1,38 @@
 [
     {
         "id": 1,
-        "title": "Tree Image 1",
-        "description": "Beautiful tree landscape image",
-        "image": "/images/tree1.jpg",
-        "category": "Tree"
+        "title": "Double Modern Carriage House",
+        "description": "Side motor - Wood grain textured finish (before)",
+        "image": "/images/ins1.jpg",
+        "category": "Installation"
     },
     {
         "id": 2,
-        "title": "Tree Image 2",
-        "description": "Beautiful tree landscape image",
-        "image": "/images/tree2.jpg",
-        "category": "Tree"
+        "title": "Double Modern Carriage House",
+        "description": "Side motor - Wood grain textured finish (After)",
+        "image": "/images/ins2.png",
+        "category": "Installation"
     },
     {
         "id": 3,
-        "title": "Tree Image 3",
-        "description": "Beautiful tree landscape image",
-        "image": "/images/tree3.jpg",
-        "category": "Tree"
+        "title": "Garage Door Installation",
+        "description": "Garage door with side motor",
+        "image": "/images/ins3.jpeg",
+        "category": "Installation"
     },
     {
         "id": 4,
-        "title": "Tree Image 4",
-        "description": "Beautiful tree landscape image",
-        "image": "/images/tree4.jpg",
-        "category": "Tree"
+        "title": "Garage Door Installation",
+        "description": "Garage Door Installation (Before)",
+        "image": "/images/ins4.jpg",
+        "category": "Installation"
     },
     {
         "id": 5,
-        "title": "Tree Image 5",
-        "description": "Beautiful tree landscape image",
-        "image": "/images/tree5.jpg",
-        "category": "Tree"
+        "title": "Garage Door Installation",
+        "description": "Garage Door Installation (After)",
+        "image": "/images/ins5.jpg",
+        "category": "Installation"
     },
     {
         "id": 6,
