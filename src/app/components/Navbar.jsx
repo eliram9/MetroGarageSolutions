@@ -94,10 +94,8 @@ const Navbar = () => {
                                 className="mr-3 w-[60px] h-[40px] md:w-[85px] md:h-[60px]"
                             />
                             <h1 className="text-xl md:text-3xl font-semibold pt-1 md:pt-1 tracking-wide whitespace-nowrap flex items-center md:block">
-                                METRO
-                                <span
-                                    className="bg-gradient-to-r from-start to-end bg-clip-text text-transparent text-xs md:text-sm font-medium tracking-wide mt-[2px] md:ml-0 md:block md:mt-[-4px] ml-1 whitespace-nowrap md:whitespace-normal"
-                                >
+                                <span className="text-[#0010A4] dark:text-white">METRO</span>
+                                <span className="bg-gradient-to-r from-start to-end bg-clip-text text-transparent text-xs md:text-sm font-medium tracking-wide mt-[2px] md:ml-0 md:block md:mt-[-4px] ml-1 whitespace-nowrap md:whitespace-normal">
                                     GARAGE SOLUTIONS
                                 </span>
                             </h1>

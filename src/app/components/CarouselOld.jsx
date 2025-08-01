@@ -1,19 +1,19 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useMemo } from "react";
-import imagesData from "../../data/images.json";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import worksData from "../../data/works.json";
 
 const categoryColors = {
-  Tree: 'bg-green-600',
-  Sun: 'bg-yellow-600',
-  Whale: 'bg-blue-600',
-  Snow: 'bg-gray-600',
+  Installation: 'bg-blue-600',
+  Repair: 'bg-emerald-600',
+  Maintenance: 'bg-amber-600',
+  Commercial: 'bg-purple-600',
 };
 
-const CarouselTest = ({ activeCategory }) => {
+const CarouselOld = () => {
   const [currentIndex, setCurrentIndex] = useState(2); // Start with center image
-  const works = activeCategory ? imagesData.filter(image => image.category === activeCategory) : imagesData;
+  const works = worksData;
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % works.length);
@@ -24,8 +24,6 @@ const CarouselTest = ({ activeCategory }) => {
   };
 
   const getVisibleImages = () => {
-    if (works.length === 0) return [];
-    
     const visible = [];
     for (let i = -2; i <= 2; i++) {
       const index = (currentIndex + i + works.length) % works.length;
@@ -38,40 +36,31 @@ const CarouselTest = ({ activeCategory }) => {
     return visible;
   };
 
-  // Use useMemo for efficient recalculation of visible images
-  const visibleImages = useMemo(() => getVisibleImages(), [currentIndex, activeCategory, works]);
+  const [visibleImages, setVisibleImages] = useState(getVisibleImages());
 
-  // Reset index when category changes
   useEffect(() => {
-    if (works.length > 0) {
-      const validIndex = Math.min(2, works.length - 1);
-      setCurrentIndex(validIndex);
-    }
-  }, [activeCategory]);
-
+    setVisibleImages(getVisibleImages());
+  }, [currentIndex]);
 
   return (
     <div className="relative w-full mx-auto overflow-hidden">
       <div className="flex justify-center items-center h-[600px] relative">
-        <AnimatePresence>
-          {visibleImages.map((work, index) => {
-            const position = work.position;
-            const isCenter = position === 0;
-            const isNearCenter = Math.abs(position) === 1;
+        {visibleImages.map((work, index) => {
+          const position = work.position;
+          const isCenter = position === 0;
+          const isNearCenter = Math.abs(position) === 1;
 
-            return (
-              <motion.div
-                key={work.id}
+          return (
+            <motion.div
+              key={`${work.originalIndex}-${currentIndex}`}
               className="absolute rounded-lg overflow-hidden cursor-pointer shadow-lg"
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{
-                opacity: 1,
                 x: position === 0 ? 0 : position === 1 ? 280 : position === -1 ? -280 : position === 2 ? 450 : -450,
                 scale: isCenter ? 1.1 : isNearCenter ? 0.85 : 0.7,
                 filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 1.5}px)`,
                 zIndex: isCenter ? 20 : isNearCenter ? 15 : 10,
               }}
-              exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               onClick={() => {
                 if (position !== 0) {
@@ -112,10 +101,9 @@ const CarouselTest = ({ activeCategory }) => {
                   <p className="text-white/90 text-sm">{work.description}</p>
                 </motion.div>
               )}
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Navigation */}
@@ -150,4 +138,4 @@ const CarouselTest = ({ activeCategory }) => {
   );
 };
 
-export default CarouselTest;
+export default CarouselOld;

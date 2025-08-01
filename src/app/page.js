@@ -8,25 +8,22 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Works from "./components/Works";
 import Container from "./components/Container";
+import FAQ from "./components/FAQ";
 
 
 export default function Home() {
     return (
-        <div>
+        <main>
             <Navbar />
             <Hero />
             <Container> 
                 <About />
             </Container>     
             <Services />
-         
-                <Works />
-          
-
-                
-                <Contact />
-            
+            <Works />
+            <FAQ />
+            <Contact />
             <Footer />
-        </div>
+        </main>
     );
 }
