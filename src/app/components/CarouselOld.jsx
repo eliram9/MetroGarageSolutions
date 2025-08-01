@@ -138,4 +138,4 @@ const CarouselOld = () => {
   );
 };
 
-export default Carousel;
+export default CarouselOld;

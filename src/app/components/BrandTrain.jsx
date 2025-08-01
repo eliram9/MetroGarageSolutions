@@ -41,7 +41,7 @@ const BrandTrain = () => {
         <div className="w-full my-16 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="text-center">
-                    <h2 className='font-medium dark:text-white md:text-3xl text-2xl mb-4'>TRUSTED BRANDS</h2>
+                    <h2 className='font-md tracking-wide dark:text-white mb-4'>TRUSTED BRANDS</h2>
                     <h4 className='text-md md:text-xl font-base pt-1 mb-10'>We work with industry-leading brands</h4> 
                 </div>
                 
