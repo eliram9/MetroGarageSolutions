@@ -8,30 +8,37 @@ const About = () => {
             <header className='left-0 relative'>
                     <h1 className='text-7xl md:text-9xl font-extrabold text-blue-500 opacity-15' aria-hidden="true">ABOUT</h1>
                     <div className='text-primary'>
-                        <h2 id="about-heading" className='ml-10 font-mediumm absolute -mt-9 md:-mt-12 text-[#002C8C] dark:text-white  md:text-3xl text-2xl'>WHO ARE WE?</h2>
+                        <h2 id="about-heading" className='ml-10 font-medium absolute -mt-9 md:-mt-12 text-[#002C8C] dark:text-white  md:text-3xl text-2xl'>WHO ARE WE?</h2>
                     </div>
             </header>
 
-            <div className='flex flex-col md:flex-col lg:flex-row justify-between items-center'>
-                <article className='w-full md:w-full lg:w-1/2 order-2 md:order-2 lg:order-1'>
-                    <div>
-                        <p className='text-base md:text-lg my-6 font-light'>Metro Garage Solution is a local and family owned company, we are based in Rockville, MD and provide reliable and affordable services throughout the Washington DC metropolitan area.</p>
-                        <div className='flex justify-center lg:justify-start'>
-                            <button className='btn-primary' aria-label="View our garage door services">OUR SERVICES</button>
+            <div className='flex flex-col md:flex-col lg:flex-row justify-between items-center max-w-7xl mx-auto gap-6 sm:gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8'>
+                <article className='w-full md:w-full lg:w-1/2 order-2 md:order-2 lg:order-1 px-4 md:px-6 lg:px-0 lg:pr-8'>
+                    <div className='space-y-6'>
+                        <p className='text-base md:text-lg lg:text-xl leading-relaxed font-light text-gray-700 dark:text-gray-300'>
+                            Metro Garage Solutions is a local and family owned company, we are based in Rockville, MD and provide reliable and affordable services throughout the Washington DC metropolitan area.
+                        </p>
+                        <div className='flex justify-center lg:justify-start pt-2'>
+                            <button className='btn-primary w-full sm:w-auto' aria-label="View our garage door services">OUR SERVICES</button>
                         </div>
                     </div>
                 </article>
 
                 <aside className='w-full md:w-full lg:w-1/2 flex justify-center lg:justify-end items-center order-1 md:order-1 lg:order-2'>
-                    <figure className='w-full md:w-[600px] py-6'>
-                        <Image 
-                            src="/images/ofer-ai.png" 
-                            alt="Professional garage door technician from Metro Garage Solutions in Rockville MD" 
-                            width={500} 
-                            height={500} 
-                            className='w-full h-auto rounded-lg'
-                            loading="lazy"
-                        />
+                    <figure className='w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl py-6 px-4 md:px-0'>
+                        <div className='relative aspect-square overflow-hidden rounded-lg shadow-lg'>
+                            <Image 
+                                src="/images/ofer-ai.png" 
+                                alt="Professional garage door technician from Metro Garage Solutions in Rockville MD" 
+                                fill
+                                sizes="(max-width: 640px) 384px, (max-width: 768px) 448px, (max-width: 1024px) 512px, (max-width: 1280px) 576px, 672px"
+                                className='object-cover object-center transition-transform duration-300 hover:scale-105'
+                                loading="lazy"
+                                quality={85}
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                            />
+                        </div>
                     </figure>
                 </aside>
             </div>

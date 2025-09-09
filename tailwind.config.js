@@ -38,10 +38,15 @@ module.exports = {
             },
             animation: {
                 'spin-slow': 'spin 10s linear infinite',
+                'shimmer': 'shimmer 2s ease-in-out infinite',
             },
             keyframes: {
                 spin: {
                     to: { transform: 'rotate(360deg)' },
+                },
+                shimmer: {
+                    '0%': { backgroundPosition: '-200% 0' },
+                    '100%': { backgroundPosition: '200% 0' },
                 },
             },
             textColor: {
@@ -61,5 +66,6 @@ module.exports = {
     ],
     safelist: [
         'animate-spin-slow',
+        'animate-shimmer',
     ],
 };
