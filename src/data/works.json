@@ -2,21 +2,21 @@
     {
         "id": 2,
         "title": "Door Repair",
-        "description": "Panel replacment and color matching (Before).",
+        "description": "Panel replacement and color matching (Before).",
         "image": "/images/rep-2.jpg",
         "category": "Installation"
     },
     {
         "id": 3,
         "title": "Door Repair",
-        "description": "Panel replacment and color matching (Before).",
+        "description": "Panel replacement and color matching (Before).",
         "image": "/images/rep-2.jpg",
         "category": "Repair"
     },
     {
         "id": 4,
         "title": "Door Repair",
-        "description": "Panel replacment and color matching (After).",
+        "description": "Panel replacement and color matching (After).",
         "image": "/images/rep-3.jpg",
         "category": "Repair"
     },

@@ -73,9 +73,13 @@ export const metadata = {
         },
     },
     icons: {
-        icon: "/images/garage.png",
-        shortcut: "/images/garage.png",
-        apple: "/images/garage.png",
+        icon: [
+            { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+            { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+            { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+        ],
+        shortcut: "/favicon-32x32.png",
+        apple: "/apple-touch-icon.png",
     },
     manifest: "/manifest.json",
 };
@@ -97,6 +101,13 @@ export default function RootLayout({ children }) {
                 
                 {/* DNS prefetch for additional performance */}
                 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+                
+                {/* Properly sized favicons */}
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <link rel="shortcut icon" href="/favicon-32x32.png" />
                 
                 {/* Google Analytics - Only in production */}
                 {GA_TRACKING_ID && process.env.NODE_ENV === 'production' && (

@@ -61,11 +61,16 @@ const StructuredData = () => {
                     "Monday",
                     "Tuesday",
                     "Wednesday",
-                    "Thursday",
-                    "Friday"
+                    "Thursday"
                 ],
                 "opens": "09:00",
                 "closes": "20:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Friday",
+                "opens": "08:00",
+                "closes": "14:00"
             },
             {
                 "@type": "OpeningHoursSpecification",
