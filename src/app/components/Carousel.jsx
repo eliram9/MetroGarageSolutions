@@ -7,8 +7,9 @@ import imagesData from "../../data/images.json";
 const categoryColors = {
   Tree: 'bg-green-600',
   Sun: 'bg-yellow-600',
-  Whale: 'bg-blue-600',
-  Snow: 'bg-gray-600',
+  Repair: 'bg-red',
+  Maintenance: 'bg-orange',
+  Commercial: 'bg-primary',
 };
 
 const Carousel = ({ activeCategory }) => {
@@ -49,6 +50,31 @@ const Carousel = ({ activeCategory }) => {
     }
   }, [activeCategory]);
 
+
+  // Show "Coming Soon" message if no images for this category
+  if (works.length === 0) {
+    return (
+      <div className="relative w-full mx-auto overflow-hidden">
+        <div className="flex justify-center items-center h-[300px] md:h-[400px] lg:h-[600px] relative">
+          <div className="text-center p-8 md:p-12 lg:p-16">
+            <div className="bg-gradient-to-br from-primary to-red rounded-2xl p-8 md:p-12 lg:p-16 shadow-2xl max-w-md mx-auto">
+              <div className="text-white mb-4">
+                <svg className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto mb-4 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
+                Coming Soon
+              </h3>
+              <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
+                We're working on adding {activeCategory} images to our gallery. Check back soon!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full mx-auto overflow-hidden">

@@ -5,9 +5,9 @@ import Carousel from "./Carousel";
 
 const tabData = [
     { label: "Installation" },
-    { label: "Sun" },
-    { label: "Whale" },
-    { label: "Snow" },
+    { label: "Repair" },
+    { label: "Maintenance" },
+    { label: "Commercial" },
 ];
 
 export default function Tabs() {
