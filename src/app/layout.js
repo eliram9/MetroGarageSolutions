@@ -1,5 +1,5 @@
 import "./globals.css";
-import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Montserrat, Comfortaa, Rubik } from 'next/font/google';
 
 import { ThemeProvider } from '../util/ThemeProvider';
@@ -84,8 +84,6 @@ export const metadata = {
     manifest: "/manifest.json",
 };
 
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
-
 export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
@@ -96,12 +94,8 @@ export default function RootLayout({ children }) {
                 {/* Preconnect to external domains for performance */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="preconnect" href="https://static.elfsight.com" />
-                
-                {/* DNS prefetch for additional performance */}
-                <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-                
+
                 {/* Properly sized favicons */}
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -109,26 +103,6 @@ export default function RootLayout({ children }) {
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="shortcut icon" href="/favicon-32x32.png" />
                 
-                {/* Google Analytics - Only in production */}
-                {GA_TRACKING_ID && process.env.NODE_ENV === 'production' && (
-                    <>
-                        <Script
-                            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-                            strategy="afterInteractive"
-                        />
-                        <Script id="google-analytics" strategy="afterInteractive">
-                            {`
-                                window.dataLayer = window.dataLayer || [];
-                                function gtag(){dataLayer.push(arguments);}
-                                gtag('js', new Date());
-                                gtag('config', '${GA_TRACKING_ID}', {
-                                    page_title: document.title,
-                                    page_location: window.location.href,
-                                });
-                            `}
-                        </Script>
-                    </>
-                )}
             </head>
             <body 
                 suppressHydrationWarning 
@@ -138,6 +112,9 @@ export default function RootLayout({ children }) {
                 <ThemeProvider>
                     {children}
                 </ThemeProvider>
+                {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_GA_TRACKING_ID && (
+                    <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />
+                )}
             </body>
         </html>
     );

@@ -98,6 +98,44 @@ textarea:-webkit-autofill:active {
   }
 }
 
+@layer utilities {
+  /* Brand duotone image treatment for the About hero image */
+  .img-duotone {
+    /* keep most of the real color; just a touch desaturated + a little punch */
+    filter: saturate(0.75) contrast(1.06) brightness(1.02);
+  }
+
+  /* The orange→red brand wash — subtle tint over the photo */
+  .duotone-wash {
+    background: linear-gradient(135deg, #DD6951 0%, #DE2A51 100%); /* start → end */
+    mix-blend-mode: soft-light;
+    opacity: 0.45;
+  }
+  .dark .duotone-wash {
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+  }
+
+  /* ZOOM CONTROL — change --img-zoom only. 1 = no zoom, 1.5 = strong zoom. */
+  .img-zoomable {
+    --img-zoom: 1.5;
+    transform: scale(var(--img-zoom));
+    transition: transform 700ms ease-out;
+    animation: imgReveal 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .group:hover .img-zoomable {
+    transform: scale(calc(var(--img-zoom) + 0.07));
+  }
+  @keyframes imgReveal {
+    from { transform: scale(calc(var(--img-zoom) + 0.12)); }
+    to   { transform: scale(var(--img-zoom)); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-zoomable { animation: none; }
+}
+
 @layer components {
   /* Primary Button - Main CTAs */
   .btn-primary {

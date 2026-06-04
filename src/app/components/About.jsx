@@ -16,7 +16,9 @@ const About = () => {
                 <article className='w-full md:w-full lg:w-1/2 order-2 md:order-2 lg:order-1 px-4 md:px-6 lg:px-0 lg:pr-8'>
                     <div className='space-y-6'>
                         <p className='text-base md:text-lg lg:text-xl leading-relaxed font-light text-gray-700 dark:text-gray-300'>
-                            Metro Garage Solutions is a local and family owned company, we are based in Rockville, MD and provide reliable and affordable services throughout the Washington DC metropolitan area.
+                            Metro Garage Solutions is a local and family a local family owned company, based in Rockville, MD. for over 12 years
+Provides all type of garage doors repair, maintainance and Installation services
+Through out the Md-DC-Northern Virginia area.
                         </p>
                         <div className='flex justify-center lg:justify-start pt-2'>
                             <button className='btn-primary w-full sm:w-auto' aria-label="View our garage door services">OUR SERVICES</button>
@@ -24,20 +26,46 @@ const About = () => {
                     </div>
                 </article>
 
-                <aside className='w-full md:w-full lg:w-1/2 flex justify-center lg:justify-end items-center order-1 md:order-1 lg:order-2'>
-                    <figure className='w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl py-6 px-4 md:px-0'>
-                        <div className='relative aspect-square overflow-hidden rounded-lg shadow-lg'>
-                            <Image 
-                                src="/images/ofer-ai.png" 
-                                alt="Professional garage door technician from Metro Garage Solutions in Rockville MD" 
-                                fill
-                                sizes="(max-width: 640px) 384px, (max-width: 768px) 448px, (max-width: 1024px) 512px, (max-width: 1280px) 576px, 672px"
-                                className='object-cover object-center transition-transform duration-300 hover:scale-105'
-                                loading="lazy"
-                                quality={85}
-                                placeholder="blur"
-                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                            />
+                <aside className='w-full md:w-full lg:w-2/5 flex justify-center lg:justify-end items-center order-1 md:order-1 lg:order-2'>
+                    <figure className='group relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl py-6 px-4 md:px-0'>
+
+                        {/* Brand glow behind the frame */}
+                        <div
+                            aria-hidden="true"
+                            className='pointer-events-none absolute inset-6 md:inset-2 -z-0 rounded-[2rem] bg-gradient-to-br from-start to-end opacity-30 blur-2xl dark:opacity-40 transition-opacity duration-500 group-hover:opacity-50'
+                        />
+
+                        {/* Gradient frame ring */}
+                        <div className='relative rounded-lg shadow-end/20 dark:shadow-end/40'>
+                            <div className='relative aspect-square overflow-hidden rounded-lg'>
+
+                                {/* Zoomed, desaturated photo */}
+                                <Image
+                                    src="/images/ofer_1.png"
+                                    alt="Professional garage door technician from Metro Garage Solutions in Rockville MD"
+                                    fill
+                                    className='img-duotone img-zoomable object-cover object-center'
+                                    loading="lazy"
+                                    quality={85}
+                                    placeholder="blur"
+                                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                                />
+
+                                {/* Brand-color duotone wash (recolors the photo) */}
+                                <div aria-hidden="true" className='duotone-wash absolute inset-0' />
+
+                                {/* Blue glow from bottom-right, fading up to transparent */}
+                                <div
+                                    aria-hidden="true"
+                                    className='absolute inset-0 bg-gradient-to-bl from-primary/45'
+                                />
+
+                                {/* Red glow from bottom-left, fading up to transparent */}
+                                <div
+                                    aria-hidden="true"
+                                    className='absolute inset-0 bg-gradient-to-tr from-end/45'
+                                />
+                            </div>
                         </div>
                     </figure>
                 </aside>

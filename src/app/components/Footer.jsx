@@ -6,6 +6,11 @@ const Footer = () => {
             <div className="mt-2 text-center text-xs lg:text-sm">
                 <p>© {new Date().getFullYear()} Metro Garage Solutions. All rights reserved.</p>
             </div>
+            <div>
+                <div className='border-t border-red-600'>
+
+                </div>
+            </div>
         </footer>
     );
 };

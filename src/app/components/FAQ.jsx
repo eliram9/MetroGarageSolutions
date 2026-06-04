@@ -1,10 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from "./Container";
 
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(null);
+    const [loadReviews, setLoadReviews] = useState(false);
+
+    useEffect(() => {
+        // Defer Elfsight loading until page is interactive
+        const timer = setTimeout(() => {
+            setLoadReviews(true);
+        }, 2000); // Load after 2 seconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const faqs = [
         {
@@ -25,11 +35,11 @@ const FAQ = () => {
         },
         {
             question: "How quickly can you respond to service calls?",
-            answer: "We understand that garage door issues can be urgent, especially when they affect your daily routine or home security. We strive to provide same-day or next-day service for most repair calls. For installations and non-urgent maintenance, we typically schedule within 2-3 business days."
+            answer: "We understand that garage door issues can be urgent, especially when they affect your daily routine or home security. We strive to provide same-day or next-day service for most repair calls."
         },
         {
             question: "What payment methods do you accept?",
-            answer: "We accept various payment methods including cash, checks, and major credit cards for your convenience. We believe in transparent pricing with no hidden fees, and all costs will be discussed upfront during your free estimate."
+            answer:  "We accept various payment methods including cash, checks, major credit cards, Zelle, and Venmo for your convenience. We believe in transparent pricing with no hidden fees, and all costs will be discussed upfront during your free estimate."
         }
     ];
 
@@ -50,8 +60,16 @@ const FAQ = () => {
                     </div>
                     <div className="w-full max-w-full overflow-hidden">
                         <div className="max-w-6xl mx-auto">
-                            <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                            <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
+                            {loadReviews ? (
+                                <>
+                                    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                                    <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
+                                </>
+                            ) : (
+                                <div className="h-64 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse flex items-center justify-center">
+                                    <p className="text-gray-500 dark:text-gray-400">Loading reviews...</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
