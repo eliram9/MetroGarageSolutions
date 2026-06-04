@@ -1,12 +1,37 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroText from './HeroText';
 import Container from './Container';
 
 
 const Hero = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const [isMobile, setIsMobile] = useState(true); // Default to mobile for SSR
+
+    useEffect(() => {
+        // bundle-conditional: Detect device type and serve appropriate video
+        const checkMobile = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            console.log(`[Hero Video] Screen width: ${window.innerWidth}px | Mobile: ${mobile}`);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Adaptive video source: mobile (999KB) vs desktop (2.4MB)
+    const videoSrc = isMobile
+        ? '/images/hero_video.mp4'          // 480p, 369kbps, ~1MB
+        : '/images/hero_video_desktop.mp4'; // 720p, 930kbps, ~2.4MB
+
+    // Debug: Log which video is being loaded
+    useEffect(() => {
+        console.log(`[Hero Video] Loading: ${videoSrc}`);
+        console.log(`[Hero Video] Device: ${isMobile ? 'Mobile (999KB)' : 'Desktop (2.4MB)'}`);
+    }, [videoSrc, isMobile]);
 
     return (
         <section className='relative h-[70vh] sm:h-[75vh] md:h-[80vh] flex items-center overflow-hidden font-rubik' aria-labelledby="hero-heading">
@@ -20,18 +45,19 @@ const Hero = () => {
                 </div>
             )}
 
-            <video 
+            <video
+                key={videoSrc} // Force re-render when video source changes
                 className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src="/images/hero_video.mp4"
-                autoPlay 
-                loop 
+                src={videoSrc}
+                autoPlay
+                loop
                 muted
                 playsInline
                 aria-hidden="true"
                 onLoadedData={() => setVideoLoaded(true)}
                 onCanPlay={() => setVideoLoaded(true)}
             >
-                <source src="/images/hero_video.mp4" type="video/mp4" />
+                <source src={videoSrc} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
