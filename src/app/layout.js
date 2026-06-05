@@ -21,8 +21,16 @@ const rubik = Rubik({
     variable: '--font-rubik'
 });
 
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+};
+
 export const metadata = {
-    title: "Metro Garage Solutions | Professional Garage Door Services in Rockville MD",
+    title: {
+        template: '%s | Metro Garage Solutions',
+        default: 'Metro Garage Solutions | Professional Garage Door Services in Rockville MD',
+    },
     description: "Expert garage door installation, repair, and maintenance services in Rockville, MD and Washington DC metro area. Family-owned business with quality guaranteed. Free estimates available.",
     keywords: "garage door repair, garage door installation, garage door opener, Rockville MD, Washington DC, garage door service, garage door maintenance, family owned garage door company",
     authors: [{ name: "Metro Garage Solutions" }],
@@ -33,7 +41,7 @@ export const metadata = {
         address: false,
         telephone: false,
     },
-    metadataBase: new URL('https://metrogaragesolutions.com'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://metrogaragesolutions.com'),
     alternates: {
         canonical: '/',
     },
@@ -62,7 +70,7 @@ export const metadata = {
     robots: {
         index: true,
         follow: true,
-        nocache: true,
+        nocache: false,
         googleBot: {
             index: true,
             follow: true,
@@ -89,8 +97,7 @@ export default function RootLayout({ children }) {
         <html lang="en" suppressHydrationWarning>
             <head>
                 <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                
+
                 {/* Preconnect to external domains for performance */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

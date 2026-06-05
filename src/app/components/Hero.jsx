@@ -49,6 +49,7 @@ const Hero = () => {
                 key={videoSrc} // Force re-render when video source changes
                 className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
                 src={videoSrc}
+                poster="/images/ofer-ai.png"
                 autoPlay
                 loop
                 muted

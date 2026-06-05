@@ -1,0 +1,118 @@
+---
+description: >-
+  Project-specific SEO rules for metrogaragesolutions.com. Apply when editing
+  layout.js, StructuredData.jsx, sitemap.js, robots config, OG/meta tags, or
+  any public-facing component. Complements the global seo rule — refer there
+  for general React/Next.js SEO principles.
+globs: >-
+  src/app/{layout,page,sitemap}.js,
+  src/app/components/{StructuredData,SEO}.jsx,
+  public/robots.txt
+alwaysApply: false
+---
+
+# Metro Garage Solutions — Project SEO
+
+## Stack
+
+- **Next.js 15.0.3** + **React 19 RC** — App Router, JavaScript (no TypeScript)
+- **Single-page app** with hash sections: `#about`, `#services`, `#works`, `#contact`
+- **Domain:** `https://metrogaragesolutions.com`
+
+---
+
+## Key Files
+
+| Purpose | File |
+|---------|------|
+| Root metadata + layout | `src/app/layout.js` |
+| JSON-LD structured data | `src/app/components/StructuredData.jsx` |
+| Sitemap | `src/app/sitemap.js` |
+| Global styles | `src/app/globals.css` |
+
+---
+
+## What's Already Implemented
+
+- `metadataBase`, OG tags, Twitter Card, robots, icons, manifest — all in `src/app/layout.js`
+- 5 JSON-LD schemas in `StructuredData.jsx`: `LocalBusiness`, `Service`, `Organization`, `BreadcrumbList`, `FAQPage`
+- Google Analytics via `@next/third-parties/google` — production-only, gated on `NEXT_PUBLIC_GA_TRACKING_ID`
+- Fonts via `next/font/google`: Montserrat, Comfortaa, Rubik — no render-blocking `@import`
+
+**Do not duplicate** any of the above. When editing metadata, always read `layout.js` first and modify in place.
+
+---
+
+## Project Conventions
+
+**JavaScript, not TypeScript.** Use `.js` / `.jsx` extensions and plain JS objects — no `import type`, no type annotations.
+
+**Metadata is a flat string title**, not a template:
+```js
+// Current
+title: "Metro Garage Solutions | Professional Garage Door Services in Rockville MD"
+
+// If adding sub-pages in future, switch to:
+title: { template: '%s | Metro Garage Solutions', default: 'Metro Garage Solutions | ...' }
+```
+
+**JSON-LD injection uses `next/script` with unique string ids:**
+```jsx
+import Script from 'next/script';
+
+<Script
+  id="schema-your-type"          // must be unique across all Script tags
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+/>
+```
+Add new schemas inside `StructuredData.jsx` — don't scatter them across components.
+
+**`@id` anchors** — cross-reference schemas using the established anchors:
+- `"https://metrogaragesolutions.com/#business"` → LocalBusiness
+- `"https://metrogaragesolutions.com/#organization"` → Organization
+- `"https://metrogaragesolutions.com/#services"` → Service
+
+---
+
+## Known Gotchas
+
+**Hash sections in the sitemap** — `src/app/sitemap.js` currently lists `/#about`, `/#services`, etc. Search engines do not index hash fragments as separate pages. The sitemap should only contain the base URL (`https://metrogaragesolutions.com`). Do not add more hash-based URLs to the sitemap.
+
+**`nocache: true` in robots config** — set in `layout.js`. This tells Google not to store a cached copy of the page. Acceptable for a frequently updated business site but worth noting when debugging Search Console issues.
+
+**`viewport` meta tag is manually set in `<head>`** — layout.js has `<meta name="viewport" ...>` inline. In Next.js 14+, viewport should be a separate `export const viewport` in `layout.js`. Harmless for now but should be migrated if other viewport settings are needed.
+
+**React 19 RC** — the app uses `react@19.0.0-rc-*`. The stable React 19 APIs work the same way; just be aware if any third-party SEO library claims incompatibility.
+
+---
+
+## Adding New Pages
+
+This is currently a single-page app. If route segments are added (e.g. `/services/garage-door-repair`):
+
+1. Add a `metadata` export to the new `page.js` — don't rely solely on the root layout metadata.
+2. Switch the root layout `title` to a template (see above).
+3. Add the new URL to `sitemap.js` (not as a hash).
+4. Add a `BreadcrumbList` schema for the new route in `StructuredData.jsx` or a local schema component.
+
+---
+
+## Updating FAQ Schema
+
+The FAQ schema in `StructuredData.jsx` must match the visible FAQ content in `src/app/components/FAQ.jsx`. If FAQ questions are added or changed, update both the component text and the `faqSchema.mainEntity` array — they must stay in sync for Google's Rich Results validation.
+
+---
+
+## Verification
+
+```bash
+# Check OG/Twitter tags are in raw HTML (not injected by JS)
+curl -s https://metrogaragesolutions.com | grep -E "og:|twitter:|canonical"
+
+# Simulate social scraper
+curl -A "Slackbot" https://metrogaragesolutions.com | grep "<title>"
+```
+
+Validate structured data: https://search.google.com/test/rich-results
+OG debugger: https://developers.facebook.com/tools/debug/

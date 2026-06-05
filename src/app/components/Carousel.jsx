@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import imagesData from "../../data/images.json";
 
 const categoryColors = {
@@ -89,11 +90,11 @@ const Carousel = ({ activeCategory }) => {
               <motion.div
                 key={work.id}
               className={`absolute rounded-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${
-                isCenter 
-                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40' 
-                  : isNearCenter 
-                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20'
-                  : 'shadow-lg shadow-gray-900/20'
+                isCenter
+                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 w-[280px] h-[200px] sm:w-[400px] sm:h-[280px] md:w-[600px] md:h-[360px] lg:w-[800px] lg:h-[480px]'
+                  : isNearCenter
+                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20 w-[240px] h-[170px] sm:w-[350px] sm:h-[245px] md:w-[500px] md:h-[300px] lg:w-[700px] lg:h-[420px]'
+                  : 'shadow-lg shadow-gray-900/20 w-[200px] h-[140px] sm:w-[300px] sm:h-[210px] md:w-[400px] md:h-[240px] lg:w-[750px] lg:h-[300px]'
               }`}
               initial={{ opacity: 0 }}
               animate={{
@@ -111,17 +112,15 @@ const Carousel = ({ activeCategory }) => {
                 }
               }}
             >
-              <img
-                src={work.image}
-                alt={work.title || `Slide ${index}`}
-                className={`object-cover ${
-                  isCenter
-                    ? "w-[280px] h-[200px] sm:w-[400px] sm:h-[280px] md:w-[600px] md:h-[360px] lg:w-[800px] lg:h-[480px]"
-                    : isNearCenter
-                    ? "w-[240px] h-[170px] sm:w-[350px] sm:h-[245px] md:w-[500px] md:h-[300px] lg:w-[700px] lg:h-[420px]"
-                    : "w-[200px] h-[140px] sm:w-[300px] sm:h-[210px] md:w-[400px] md:h-[240px] lg:w-[750px] lg:h-[300px]"
-                }`}
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={work.image}
+                  alt={work.title || `Slide ${index}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, (max-width: 1024px) 600px, 800px"
+                />
+              </div>
 
               {/* Category Tag - Top Left */}
               <div className="absolute top-1 left-1 md:top-2 md:left-2 z-10">
