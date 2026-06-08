@@ -1,20 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Script from 'next/script';
 import Container from "./Container";
 
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(null);
-    const [loadReviews, setLoadReviews] = useState(false);
-
-    useEffect(() => {
-        // Defer Elfsight loading until page is interactive
-        const timer = setTimeout(() => {
-            setLoadReviews(true);
-        }, 2000); // Load after 2 seconds
-
-        return () => clearTimeout(timer);
-    }, []);
 
     const faqs = [
         {
@@ -58,18 +49,14 @@ const FAQ = () => {
                             {`Don't just take our word for it - see what our satisfied customers have to say about our garage door services.`}
                         </p>
                     </div>
-                    <div className="w-full max-w-full overflow-hidden">
+                    <div className="w-full max-w-full overflow-hidden min-h-64">
+                        <Script
+                            id="elfsight-platform"
+                            src="https://static.elfsight.com/platform/platform.js"
+                            strategy="lazyOnload"
+                        />
                         <div className="max-w-6xl mx-auto">
-                            {loadReviews ? (
-                                <>
-                                    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                                    <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
-                                </>
-                            ) : (
-                                <div className="h-64 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse flex items-center justify-center">
-                                    <p className="text-gray-500 dark:text-gray-400">Loading reviews...</p>
-                                </div>
-                            )}
+                            <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
                         </div>
                     </div>
                 </div>

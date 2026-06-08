@@ -6,18 +6,21 @@ import { ThemeProvider } from '../util/ThemeProvider';
 import StructuredData from './components/StructuredData';
 
 // Initialize the fonts
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-montserrat'
 });
 
-const comfortaa = Comfortaa({ 
+const comfortaa = Comfortaa({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-comfortaa'
 });
 
-const rubik = Rubik({ 
+const rubik = Rubik({
     subsets: ['latin'],
+    display: 'swap',
     variable: '--font-rubik'
 });
 
@@ -99,8 +102,7 @@ export default function RootLayout({ children }) {
                 <meta charSet="utf-8" />
 
                 {/* Preconnect to external domains for performance */}
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="preconnect" href="https://static.elfsight.com" />
 
                 {/* Properly sized favicons */}

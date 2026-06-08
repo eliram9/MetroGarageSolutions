@@ -1,55 +1,43 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import HeroText from './HeroText';
 import Container from './Container';
 
 
 const Hero = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
-    const [isMobile, setIsMobile] = useState(true); // Default to mobile for SSR
+    const [isMobile, setIsMobile] = useState(true);
 
     useEffect(() => {
-        // bundle-conditional: Detect device type and serve appropriate video
-        const checkMobile = () => {
-            const mobile = window.innerWidth < 768;
-            setIsMobile(mobile);
-            console.log(`[Hero Video] Screen width: ${window.innerWidth}px | Mobile: ${mobile}`);
-        };
-
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Adaptive video source: mobile (999KB) vs desktop (2.4MB)
     const videoSrc = isMobile
-        ? '/images/hero_video.mp4'          // 480p, 369kbps, ~1MB
-        : '/images/hero_video_desktop.mp4'; // 720p, 930kbps, ~2.4MB
-
-    // Debug: Log which video is being loaded
-    useEffect(() => {
-        console.log(`[Hero Video] Loading: ${videoSrc}`);
-        console.log(`[Hero Video] Device: ${isMobile ? 'Mobile (999KB)' : 'Desktop (2.4MB)'}`);
-    }, [videoSrc, isMobile]);
+        ? '/images/hero_video.mp4'
+        : '/images/hero_video_desktop.mp4';
 
     return (
         <section className='relative h-[70vh] sm:h-[75vh] md:h-[80vh] flex items-center overflow-hidden font-rubik' aria-labelledby="hero-heading">
-            {/* Skeleton Loading Animation */}
-            {!videoLoaded && (
-                <div className="absolute top-0 left-0 w-full h-full bg-gray-200 dark:bg-gray-700">
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                    <div className="absolute top-0 left-0 w-full h-full">
-                        <div className="animate-shimmer bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 bg-[length:200%_100%] w-full h-full"></div>
-                    </div>
-                </div>
-            )}
+            {/* Poster — visible immediately, next/image generates a <link rel="preload"> → LCP element */}
+            <Image
+                src="/images/ofer-ai.png"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className={`object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                aria-hidden="true"
+            />
 
             <video
-                key={videoSrc} // Force re-render when video source changes
+                key={videoSrc}
                 className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
                 src={videoSrc}
-                poster="/images/ofer-ai.png"
                 autoPlay
                 loop
                 muted
@@ -59,7 +47,6 @@ const Hero = () => {
                 onCanPlay={() => setVideoLoaded(true)}
             >
                 <source src={videoSrc} type="video/mp4" />
-                Your browser does not support the video tag.
             </video>
 
             <Container>
@@ -83,7 +70,7 @@ const Hero = () => {
                         </a>
                     </nav>
 
-                </header> 
+                </header>
             </Container>
         </section>
     );

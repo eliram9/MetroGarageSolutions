@@ -14,8 +14,20 @@ const categoryColors = {
 };
 
 const Carousel = ({ activeCategory }) => {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with center image
-  const works = activeCategory ? imagesData.filter(image => image.category === activeCategory) : imagesData;
+  const [currentIndex, setCurrentIndex] = useState(2);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const works = useMemo(
+    () => activeCategory ? imagesData.filter(img => img.category === activeCategory) : imagesData,
+    [activeCategory]
+  );
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % works.length);
@@ -40,8 +52,7 @@ const Carousel = ({ activeCategory }) => {
     return visible;
   };
 
-  // Use useMemo for efficient recalculation of visible images
-  const visibleImages = useMemo(() => getVisibleImages(), [currentIndex, activeCategory, works]);
+  const visibleImages = getVisibleImages();
 
   // Reset index when category changes
   useEffect(() => {
@@ -49,7 +60,7 @@ const Carousel = ({ activeCategory }) => {
       const validIndex = Math.min(2, works.length - 1);
       setCurrentIndex(validIndex);
     }
-  }, [activeCategory]);
+  }, [activeCategory, works.length]);
 
 
   // Show "Coming Soon" message if no images for this category
@@ -68,7 +79,7 @@ const Carousel = ({ activeCategory }) => {
                 Coming Soon
               </h3>
               <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
-                We're working on adding {activeCategory} images to our gallery. Check back soon!
+                We&apos;re working on adding {activeCategory} images to our gallery. Check back soon!
               </p>
             </div>
           </div>
@@ -99,7 +110,7 @@ const Carousel = ({ activeCategory }) => {
               initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,
-                x: position === 0 ? 0 : position === 1 ? (window.innerWidth < 768 ? 120 : 280) : position === -1 ? (window.innerWidth < 768 ? -120 : -280) : position === 2 ? (window.innerWidth < 768 ? 200 : 450) : (window.innerWidth < 768 ? -200 : -450),
+                x: position === 0 ? 0 : position === 1 ? (isMobile ? 120 : 280) : position === -1 ? (isMobile ? -120 : -280) : position === 2 ? (isMobile ? 200 : 450) : (isMobile ? -200 : -450),
                 scale: isCenter ? 1.1 : isNearCenter ? 0.85 : 0.7,
                 filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 1.5}px)`,
                 zIndex: isCenter ? 20 : isNearCenter ? 15 : 10,

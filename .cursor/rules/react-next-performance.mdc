@@ -6,6 +6,6 @@ alwaysApply: false
 
 # React Performance
 
-When working on React or Next.js components, especially files related to rendering, media, loading, hydration, bundle size, or performance, apply the `vercel-react-best-practices` skill.
+When working on React or Next.js components, especially files related to rendering, media, loading, hydration, bundle size, or performance, apply the `web-performance` skill.
 
 Prefer concise recommendations first. Only edit files when explicitly asked.

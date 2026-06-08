@@ -1,9 +1,11 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 import Container from './Container';
-import CarouselOld from './CarouselOld';
-import BrandTrain from './BrandTrain';
-import Tabs from './Tabs';
+
+const Tabs = dynamic(() => import('./Tabs'), {
+    loading: () => <div className="w-full h-[400px] md:h-[600px]" />,
+});
 
 
 const Works = () => {
@@ -18,9 +20,7 @@ const Works = () => {
                     </div>
                 </div>
             </Container>
-            {/* <BrandTrain /> */}
             <Tabs />
-            {/* <CarouselOld /> */}
         </section>
     );
 };
