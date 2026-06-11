@@ -39,7 +39,7 @@ const Carousel = ({ activeCategory }) => {
 
   const getVisibleImages = () => {
     if (works.length === 0) return [];
-    
+
     const visible = [];
     for (let i = -2; i <= 2; i++) {
       const index = (currentIndex + i + works.length) % works.length;
@@ -123,7 +123,8 @@ const Carousel = ({ activeCategory }) => {
                 }
               }}
             >
-              <div className="relative w-full h-full">
+              {/* Shimmer shows behind the image until it decodes */}
+              <div className="relative w-full h-full skeleton-shimmer animate-shimmer">
                 <Image
                   src={work.image}
                   alt={work.title || `Slide ${index}`}

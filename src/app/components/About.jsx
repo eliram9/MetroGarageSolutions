@@ -6,7 +6,7 @@ const About = () => {
     return (
         <section id='about' className='font-rubik text-primary py-20' aria-labelledby="about-heading">
             <header className='left-0 relative'>
-                    <h1 className='text-7xl md:text-9xl font-extrabold text-blue-500 opacity-15' aria-hidden="true">ABOUT</h1>
+                    <div className='text-7xl md:text-9xl font-extrabold text-blue-500 opacity-15' aria-hidden="true">ABOUT</div>
                     <div className='text-primary'>
                         <h2 id="about-heading" className='ml-10 font-medium absolute -mt-9 md:-mt-12 text-[#002C8C] dark:text-white  md:text-3xl text-2xl'>WHO ARE WE?</h2>
                     </div>
@@ -16,9 +16,7 @@ const About = () => {
                 <article className='w-full md:w-full lg:w-1/2 order-2 md:order-2 lg:order-1 px-4 md:px-6 lg:px-0 lg:pr-8'>
                     <div className='space-y-6'>
                         <p className='text-base md:text-lg lg:text-xl leading-relaxed font-light text-gray-700 dark:text-gray-300'>
-                            Metro Garage Solutions is a local and family a local family owned company, based in Rockville, MD. for over 12 years
-Provides all type of garage doors repair, maintainance and Installation services
-Through out the Md-DC-Northern Virginia area.
+                            Metro Garage Solutions is a family-owned garage door company based in Rockville, MD. For over 12 years we have provided garage door repair, maintenance, and installation services throughout Maryland, Washington DC, and Northern Virginia.
                         </p>
                         <div className='flex justify-center lg:justify-start pt-2'>
                             <button className='btn-primary w-full sm:w-auto' aria-label="View our garage door services">OUR SERVICES</button>

@@ -4,6 +4,11 @@ const Footer = () => {
     return (
         <footer className="bg-primary text-white py-6 px-4 font-rubik w-full">
             <div className="max-w-4xl mx-auto flex flex-col items-center gap-4 text-center">
+                <p className="text-sm lg:text-base font-light">
+                    Metro Garage Solutions · Rockville, MD 20852 ·{' '}
+                    <a href="tel:+12406888858" className="hover:underline">(240) 688-8858</a> ·{' '}
+                    <a href="mailto:info@metrogaragesolutions.com" className="hover:underline">info@metrogaragesolutions.com</a>
+                </p>
                 <p className="text-xs lg:text-sm font-light text-white/80">
                     © {new Date().getFullYear()} Metro Garage Solutions. All rights reserved.
                 </p>

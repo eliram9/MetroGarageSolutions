@@ -106,6 +106,13 @@ textarea:-webkit-autofill:active {
 }
 
 @layer utilities {
+  /* Skeleton shimmer surface — pair with `animate-shimmer`.
+     Dark grays keep white overlay text readable in both themes. */
+  .skeleton-shimmer {
+    background: linear-gradient(110deg, #374151 35%, #4b5563 50%, #374151 65%);
+    background-size: 200% 100%;
+  }
+
   /* Brand duotone image treatment for the About hero image */
   .img-duotone {
     /* keep most of the real color; just a touch desaturated + a little punch */
@@ -143,6 +150,7 @@ textarea:-webkit-autofill:active {
   .img-zoomable { animation: none; }
   .animate-word-in,
   .animate-word-out { animation: none; opacity: 1; }
+  .animate-shimmer { animation: none; }
 }
 
 @layer components {

@@ -10,11 +10,10 @@ const Services = () => {
     return (
         <section id='services' className='bg-rose-s100' aria-labelledby="services-heading">
             <header className="relative w-full font-rubik py-6">
-                <Image src="/images/obligation.png" 
+                <Image src="/images/obligation.png"
                        alt="Professional garage door service team at work in Rockville MD"
                        className="absolute inset-0 z-0"
                        fill
-                       priority
                 />
 
                 <div className="absolute inset-0 bg-primary/65" aria-hidden="true"></div>

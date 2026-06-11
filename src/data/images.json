@@ -36,107 +36,16 @@
     },
     {
         "id": 6,
-        "title": "Whale Image 1",
-        "description": "Majestic whale ocean scene",
-        "image": "/images/whale1.jpg",
-        "category": "Whale"
+        "title": "Door Replacement",
+        "description": "New door replacement and new torsion springs (Before)",
+        "image": "/images/com2.png",
+        "category": "Commercial"
     },
     {
         "id": 7,
-        "title": "Whale Image 2",
-        "description": "Majestic whale ocean scene",
-        "image": "/images/whale2.jpg",
-        "category": "Whale"
-    },
-    {
-        "id": 8,
-        "title": "Whale Image 3",
-        "description": "Majestic whale ocean scene",
-        "image": "/images/whale3.jpg",
-        "category": "Whale"
-    },
-    {
-        "id": 9,
-        "title": "Whale Image 4",
-        "description": "Majestic whale ocean scene",
-        "image": "/images/whale4.jpg",
-        "category": "Whale"
-    },
-    {
-        "id": 10,
-        "title": "Whale Image 5",
-        "description": "Majestic whale ocean scene",
-        "image": "/images/whale5.jpg",
-        "category": "Whale"
-    },
-    {
-        "id": 11,
-        "title": "Sun Image 1",
-        "description": "Bright sunny day image",
-        "image": "/images/sun1.jpg",
-        "category": "Sun"
-    },
-    {
-        "id": 12,
-        "title": "Sun Image 2",
-        "description": "Bright sunny day image",
-        "image": "/images/sun2.jpg",
-        "category": "Sun"
-    },
-    {
-        "id": 13,
-        "title": "Sun Image 3",
-        "description": "Bright sunny day image",
-        "image": "/images/sun3.jpg",
-        "category": "Sun"
-    },
-    {
-        "id": 14,
-        "title": "Sun Image 4",
-        "description": "Bright sunny day image",
-        "image": "/images/sun4.jpg",
-        "category": "Sun"
-    },
-    {
-        "id": 15,
-        "title": "Sun Image 5",
-        "description": "Bright sunny day image",
-        "image": "/images/sun5.jpg",
-        "category": "Sun"
-    },
-    {
-        "id": 16,
-        "title": "Snow Image 1",
-        "description": "Winter snow landscape",
-        "image": "/images/snow1.jpg",
-        "category": "Snow"
-    },
-    {
-        "id": 17,
-        "title": "Snow Image 2",
-        "description": "Winter snow landscape",
-        "image": "/images/snow2.jpg",
-        "category": "Snow"
-    },
-    {
-        "id": 18,
-        "title": "Snow Image 3",
-        "description": "Winter snow landscape",
-        "image": "/images/snow3.jpg",
-        "category": "Snow"
-    },
-    {
-        "id": 19,
-        "title": "Snow Image 4",
-        "description": "Winter snow landscape",
-        "image": "/images/snow4.jpg",
-        "category": "Snow"
-    },
-    {
-        "id": 20,
-        "title": "Snow Image 5",
-        "description": "Winter snow landscape",
-        "image": "/images/snow5.jpg",
-        "category": "Snow"
+        "title": "Door Replacement",
+        "description": "New door replacement and new torsion springs (After)",
+        "image": "/images/com1.png",
+        "category": "Commercial"
     }
 ]

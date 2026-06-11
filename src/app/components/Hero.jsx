@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import HeroText from './HeroText';
 import Container from './Container';
 
 
 const Hero = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
-    const [isMobile, setIsMobile] = useState(true);
+    const [isMobile, setIsMobile] = useState(null);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -17,37 +16,36 @@ const Hero = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const videoSrc = isMobile
-        ? '/images/hero_video.mp4'
-        : '/images/hero_video_desktop.mp4';
+    // null until the first client-side measurement so we never start
+    // downloading the wrong video on desktop
+    const videoSrc = isMobile === null
+        ? null
+        : isMobile
+            ? '/images/hero_video.mp4'
+            : '/images/hero_video_desktop.mp4';
 
     return (
         <section className='relative h-[70vh] sm:h-[75vh] md:h-[80vh] flex items-center overflow-hidden font-rubik' aria-labelledby="hero-heading">
-            {/* Poster — visible immediately, next/image generates a <link rel="preload"> → LCP element */}
-            <Image
-                src="/images/ofer-ai.png"
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className={`object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+            {/* Skeleton shimmer — shown until the hero video can play */}
+            <div
                 aria-hidden="true"
+                className={`absolute inset-0 skeleton-shimmer animate-shimmer transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
             />
 
-            <video
-                key={videoSrc}
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src={videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-hidden="true"
-                onLoadedData={() => setVideoLoaded(true)}
-                onCanPlay={() => setVideoLoaded(true)}
-            >
-                <source src={videoSrc} type="video/mp4" />
-            </video>
+            {videoSrc && (
+                <video
+                    key={videoSrc}
+                    className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-hidden="true"
+                    onLoadedData={() => setVideoLoaded(true)}
+                    onCanPlay={() => setVideoLoaded(true)}
+                />
+            )}
 
             <Container>
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#002C8C] to-transparent" aria-hidden="true"></div>
