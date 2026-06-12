@@ -123,8 +123,9 @@ const Carousel = ({ activeCategory }) => {
                 }
               }}
             >
-              {/* Shimmer shows behind the image until it decodes */}
-              <div className="relative w-full h-full skeleton-shimmer">
+              {/* Shimmer shows behind the image until it decodes; `isolate` keeps
+                  the image's z-index from covering the title/category overlays */}
+              <div className="relative w-full h-full skeleton-shimmer isolate">
                 <Image
                   src={work.image}
                   alt={work.title || `Slide ${index}`}
