@@ -164,7 +164,7 @@ const Contact = () => {
                     <div className="py-16 lg:py-24">
                         {/* Section Header */}
                         <header className='left-0 relative text-center mb-12'>
-                            <h1 className='text-7xl md:text-9xl font-extrabold text-blue-500 opacity-15' aria-hidden="true">CONTACT</h1>
+                            <div className='text-7xl md:text-9xl font-extrabold text-blue-500 opacity-15' aria-hidden="true">CONTACT</div>
                             <div className='text-primary'>
                                 <h2 className='absolute font-medium -mt-9 md:-mt-12 text-[#002C8C] dark:text-white md:text-3xl text-2xl left-1/2 transform -translate-x-1/2'>GET YOUR FREE QUOTE TODAY</h2>
                             </div>

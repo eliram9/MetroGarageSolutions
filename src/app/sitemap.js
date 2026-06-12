@@ -1,36 +1,12 @@
 export default function sitemap() {
-    const baseUrl = 'https://metrogaragesolutions.com';
-    
     return [
         {
-            url: baseUrl,
-            lastModified: new Date(),
+            url: 'https://metrogaragesolutions.com',
+            // Update manually when page content materially changes — auto-bumping
+            // the date every build erodes freshness trust with AI/search crawlers.
+            lastModified: '2026-06-11',
             changeFrequency: 'monthly',
             priority: 1,
-        },
-        {
-            url: `${baseUrl}#about`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}#services`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}#works`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}#contact`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
         },
     ];
 }

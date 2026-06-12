@@ -1,4 +1,4 @@
-import Script from 'next/script';
+import faqs from '../../data/faqs';
 
 const StructuredData = () => {
     const localBusinessSchema = {
@@ -9,17 +9,18 @@ const StructuredData = () => {
         "alternateName": "Metro Garage Solutions LLC",
         "description": "Professional garage door installation, repair, and maintenance services in Rockville, MD and Washington DC metropolitan area. Family-owned business providing quality guaranteed services.",
         "url": "https://metrogaragesolutions.com",
-        "telephone": "240-688-8858",
+        "telephone": "+1-240-688-8858",
+        "email": "info@metrogaragesolutions.com",
         "priceRange": "$$",
         "image": [
-            "https://metrogaragesolutions.com/images/ofer-ai.png",
+            "https://metrogaragesolutions.com/images/ins1.jpg",
             "https://metrogaragesolutions.com/images/garage.png"
         ],
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Rockville",
             "addressLocality": "Rockville",
             "addressRegion": "MD",
+            "postalCode": "20852",
             "addressCountry": "US"
         },
         "geo": {
@@ -167,7 +168,7 @@ const StructuredData = () => {
         "logo": "https://metrogaragesolutions.com/images/garage.png",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "240-688-8858",
+            "telephone": "+1-240-688-8858",
             "contactType": "customer service",
             "availableLanguage": "English"
         },
@@ -211,74 +212,45 @@ const StructuredData = () => {
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Do you provide free estimates?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, Metro Garage Solutions provides obligation-free estimates for all garage door services. Just call us at 240-688-8858 or contact us through our website."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What areas do you serve?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We provide garage door services throughout the Washington DC metropolitan area, with our base in Rockville, MD."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you guarantee your work?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, we guarantee the quality of our work and parts. Please ask your garage door consultant for more information about our workmanship and parts warranty."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What garage door brands do you work with?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We work with major garage door brands including Chamberlain, LiftMaster, Clopay, Amarr, Genie, and Wayne Dalton."
-                }
+        "mainEntity": faqs.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
             }
-        ]
+        }))
     };
 
+    // Plain <script> tags (not next/script) so the JSON-LD is present in the
+    // initial server-rendered HTML — AI crawlers and social scrapers don't run JS.
     return (
         <>
-            <Script
-                id="local-business-schema"
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(localBusinessSchema),
                 }}
             />
-            <Script
-                id="service-schema"
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(serviceSchema),
                 }}
             />
-            <Script
-                id="organization-schema"
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(organizationSchema),
                 }}
             />
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(breadcrumbSchema),
                 }}
             />
-            <Script
-                id="faq-schema"
+            <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(faqSchema),

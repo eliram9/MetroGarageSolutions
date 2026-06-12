@@ -1,34 +1,85 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Container from './Container';
 import Link from 'next/link';
 import ThemeSwitcher from './ThemeSwitcher';
-import Text from './Text';
+
+// Hoisted constants
+const SECTIONS = ['about', 'services', 'works', 'contact'];
+
+// Phone icon component
+const PhoneIcon = () => (
+    <svg
+        className="w-6 h-6 text-white"
+        fill="white"
+        stroke="currentColor"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3" fill="none" />
+        <path
+            d="M32.5 31.5c-2.5 2.5-10-2.5-12.5-5s-7.5-10 0-12.5l2.5 2.5c.5.5.5 1.5 0 2l-1.5 1.5c-.5.5-.5 1.5 0 2.5 1 2 3.5 5 5.5 6 1 .5 2 .5 2.5 0l1.5-1.5c.5-.5 1.5-.5 2 0l2.5 2.5z"
+            fill="currentColor"
+        />
+    </svg>
+);
+
+// NavLink component for DRY
+const NavLink = ({ href, active, children, onClick, mobile = false }) => {
+    if (mobile) {
+        return (
+            <a
+                href={href}
+                className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
+                    active ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
+                }`}
+                onClick={onClick}
+            >
+                {children}
+            </a>
+        );
+    }
+
+    return (
+        <a
+            href={href}
+            className={`group relative font-medium pb-1 border-b-2 transition-colors ${
+                active ? 'border-current' : 'border-transparent hover:border-current'
+            }`}
+        >
+            {children}
+        </a>
+    );
+};
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
+    const sectionRefs = useRef({});
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
-            
-            // Get all sections with their positions
-            const sections = ['about', 'services', 'works', 'contact'];
-            const scrollPosition = window.scrollY + 200; // Increased offset for navbar height
-            
+            const scrollY = window.scrollY; // Cache scrollY
+            setScrolled(scrollY > 10);
+
+            const scrollPosition = scrollY + 200; // Increased offset for navbar height
             let currentSection = '';
-            
+
             // Check each section to see which one is currently in view
-            sections.forEach(sectionId => {
-                const element = document.getElementById(sectionId);
+            SECTIONS.forEach(sectionId => {
+                // Lazy load DOM refs: cache on first successful lookup
+                if (!sectionRefs.current[sectionId]) {
+                    sectionRefs.current[sectionId] = document.getElementById(sectionId);
+                }
+
+                const element = sectionRefs.current[sectionId];
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    const elementTop = window.scrollY + rect.top;
+                    const elementTop = scrollY + rect.top;
                     const elementBottom = elementTop + element.offsetHeight;
-                    
+
                     // For contact section, be more lenient with detection
                     if (sectionId === 'contact') {
                         // Activate contact when we're close to it or past it
@@ -43,16 +94,16 @@ const Navbar = () => {
                     }
                 }
             });
-            
+
             // If we're at the very top, no section is active
-            if (window.scrollY < 100) {
+            if (scrollY < 100) {
                 currentSection = '';
             }
-            
+
             setActiveSection(currentSection);
         };
-        
-        window.addEventListener('scroll', handleScroll);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // Call once to set initial state
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -65,19 +116,7 @@ const Navbar = () => {
                     <div className='flex justify-between items-center text-white py-3'>
                         <p className='text-xs md:text-base'>MHIC: #05-147422</p>
                         <div className='flex items-center space-x-2'>
-                            <svg
-                                className="w-6 h-6 text-white"
-                                fill="white"
-                                stroke="currentColor"
-                                viewBox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3" fill="none" />
-                                <path
-                                    d="M32.5 31.5c-2.5 2.5-10-2.5-12.5-5s-7.5-10 0-12.5l2.5 2.5c.5.5.5 1.5 0 2l-1.5 1.5c-.5.5-.5 1.5 0 2.5 1 2 3.5 5 5.5 6 1 .5 2 .5 2.5 0l1.5-1.5c.5-.5 1.5-.5 2 0l2.5 2.5z"
-                                    fill="currentColor"
-                                />
-                            </svg>
+                            <PhoneIcon />
                             <a href="tel:2406888858" className='text-xs md:text-base hover:underline'>240.688.8858</a>
                         </div>
                     </div>
@@ -93,35 +132,27 @@ const Navbar = () => {
                                 height={60}
                                 className="mr-3 w-[60px] h-[40px] md:w-[85px] md:h-[60px]"
                             />
-                            <h1 className="text-xl md:text-3xl font-semibold pt-1 md:pt-1 tracking-wide whitespace-nowrap flex items-center md:block">
+                            <p className="text-xl md:text-3xl font-semibold pt-1 md:pt-1 tracking-wide whitespace-nowrap flex items-center md:block">
                                 <span className="text-[#0010A4] dark:text-white">METRO</span>
                                 <span className="bg-gradient-to-r from-start to-end bg-clip-text text-transparent text-xs md:text-sm font-medium tracking-wide mt-[2px] md:ml-0 md:block md:mt-[-4px] ml-1 whitespace-nowrap md:whitespace-normal">
                                     GARAGE SOLUTIONS
                                 </span>
-                            </h1>
+                            </p>
                         </Link>
                         {/* Desktop Nav Links */}
                         <nav className="hidden md:flex space-x-8 items-center">
-                            <a href="#about" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'about' ? 'border-current' : 'border-transparent hover:border-current'
-                            }`}>
+                            <NavLink href="#about" active={activeSection === 'about'}>
                                 About
-                            </a>
-                            <a href="#services" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'services' ? 'border-current' : 'border-transparent hover:border-current'
-                            }`}>
+                            </NavLink>
+                            <NavLink href="#services" active={activeSection === 'services'}>
                                 Services
-                            </a>
-                            <a href="#works" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'works' ? 'border-current' : 'border-transparent hover:border-current'
-                            }`}>
+                            </NavLink>
+                            <NavLink href="#works" active={activeSection === 'works'}>
                                 Our Work
-                            </a>
-                            <a href="#contact" className={`group relative font-medium pb-1 border-b-2 transition-colors ${
-                                activeSection === 'contact' ? 'border-current' : 'border-transparent hover:border-current'
-                            }`}>
+                            </NavLink>
+                            <NavLink href="#contact" active={activeSection === 'contact'}>
                                 Contact
-                            </a>
+                            </NavLink>
                             <ThemeSwitcher />
                         </nav>
                         {/* Burger Menu Button */}
@@ -161,19 +192,19 @@ const Navbar = () => {
 
                         {/* Navigation Links */}
                         <div className="flex flex-col px-6 space-y-6">
-                            <a href="#about" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
-                                activeSection === 'about' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
-                            }`} onClick={() => setMobileMenuOpen(false)}>About</a>
-                            <a href="#services" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
-                                activeSection === 'services' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Services</a>
-                            <a href="#works" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
-                                activeSection === 'works' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Our Work</a>
-                            <a href="#contact" className={`font-medium text-lg py-3 border-b border-gray-200 dark:border-gray-600 transition-colors ${
-                                activeSection === 'contact' ? 'text-primary' : 'text-gray-700 dark:text-gray-300 hover:text-primary'
-                            }`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
-                            
+                            <NavLink href="#about" active={activeSection === 'about'} onClick={() => setMobileMenuOpen(false)} mobile>
+                                About
+                            </NavLink>
+                            <NavLink href="#services" active={activeSection === 'services'} onClick={() => setMobileMenuOpen(false)} mobile>
+                                Services
+                            </NavLink>
+                            <NavLink href="#works" active={activeSection === 'works'} onClick={() => setMobileMenuOpen(false)} mobile>
+                                Our Work
+                            </NavLink>
+                            <NavLink href="#contact" active={activeSection === 'contact'} onClick={() => setMobileMenuOpen(false)} mobile>
+                                Contact
+                            </NavLink>
+
                             <div className="pt-4">
                                 <ThemeSwitcher />
                             </div>

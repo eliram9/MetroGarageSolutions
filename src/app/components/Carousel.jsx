@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import imagesData from "../../data/images.json";
 
 const categoryColors = {
@@ -13,8 +14,20 @@ const categoryColors = {
 };
 
 const Carousel = ({ activeCategory }) => {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with center image
-  const works = activeCategory ? imagesData.filter(image => image.category === activeCategory) : imagesData;
+  const [currentIndex, setCurrentIndex] = useState(2);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const works = useMemo(
+    () => activeCategory ? imagesData.filter(img => img.category === activeCategory) : imagesData,
+    [activeCategory]
+  );
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % works.length);
@@ -26,7 +39,7 @@ const Carousel = ({ activeCategory }) => {
 
   const getVisibleImages = () => {
     if (works.length === 0) return [];
-    
+
     const visible = [];
     for (let i = -2; i <= 2; i++) {
       const index = (currentIndex + i + works.length) % works.length;
@@ -39,8 +52,7 @@ const Carousel = ({ activeCategory }) => {
     return visible;
   };
 
-  // Use useMemo for efficient recalculation of visible images
-  const visibleImages = useMemo(() => getVisibleImages(), [currentIndex, activeCategory, works]);
+  const visibleImages = getVisibleImages();
 
   // Reset index when category changes
   useEffect(() => {
@@ -48,14 +60,14 @@ const Carousel = ({ activeCategory }) => {
       const validIndex = Math.min(2, works.length - 1);
       setCurrentIndex(validIndex);
     }
-  }, [activeCategory]);
+  }, [activeCategory, works.length]);
 
 
   // Show "Coming Soon" message if no images for this category
   if (works.length === 0) {
     return (
       <div className="relative w-full mx-auto overflow-hidden">
-        <div className="flex justify-center items-center h-[300px] md:h-[400px] lg:h-[600px] relative">
+        <div className="flex justify-center items-center h-[250px] md:h-[335px] lg:h-[500px] relative">
           <div className="text-center p-8 md:p-12 lg:p-16">
             <div className="bg-gradient-to-br from-primary to-red rounded-2xl p-8 md:p-12 lg:p-16 shadow-2xl max-w-md mx-auto">
               <div className="text-white mb-4">
@@ -67,7 +79,7 @@ const Carousel = ({ activeCategory }) => {
                 Coming Soon
               </h3>
               <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
-                We're working on adding {activeCategory} images to our gallery. Check back soon!
+                We&apos;re working on adding {activeCategory} images to our gallery. Check back soon!
               </p>
             </div>
           </div>
@@ -78,7 +90,7 @@ const Carousel = ({ activeCategory }) => {
 
   return (
     <div className="relative w-full mx-auto overflow-hidden">
-      <div className="flex justify-center items-center h-[300px] md:h-[400px] lg:h-[600px] relative">
+      <div className="flex justify-center items-center h-[255px] md:h-[340px] lg:h-[510px] relative">
         <AnimatePresence>
           {visibleImages.map((work, index) => {
             const position = work.position;
@@ -88,17 +100,17 @@ const Carousel = ({ activeCategory }) => {
             return (
               <motion.div
                 key={work.id}
-              className={`absolute rounded-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${
-                isCenter 
-                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40' 
-                  : isNearCenter 
-                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20'
-                  : 'shadow-lg shadow-gray-900/20'
+              className={`absolute rounded-lg overflow-hidden cursor-pointer transition-shadow duration-300 border border-gray-200 dark:border-gray-600 ${
+                isCenter
+                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 w-[238px] h-[170px] sm:w-[340px] sm:h-[238px] md:w-[510px] md:h-[306px] lg:w-[680px] lg:h-[408px]'
+                  : isNearCenter
+                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20 w-[204px] h-[145px] sm:w-[298px] sm:h-[208px] md:w-[425px] md:h-[255px] lg:w-[595px] lg:h-[357px]'
+                  : 'shadow-lg shadow-gray-900/20 w-[170px] h-[119px] sm:w-[255px] sm:h-[179px] md:w-[340px] md:h-[204px] lg:w-[638px] lg:h-[255px]'
               }`}
               initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,
-                x: position === 0 ? 0 : position === 1 ? (window.innerWidth < 768 ? 120 : 280) : position === -1 ? (window.innerWidth < 768 ? -120 : -280) : position === 2 ? (window.innerWidth < 768 ? 200 : 450) : (window.innerWidth < 768 ? -200 : -450),
+                x: position === 0 ? 0 : position === 1 ? (isMobile ? 120 : 280) : position === -1 ? (isMobile ? -120 : -280) : position === 2 ? (isMobile ? 200 : 450) : (isMobile ? -200 : -450),
                 scale: isCenter ? 1.1 : isNearCenter ? 0.85 : 0.7,
                 filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 1.5}px)`,
                 zIndex: isCenter ? 20 : isNearCenter ? 15 : 10,
@@ -111,17 +123,16 @@ const Carousel = ({ activeCategory }) => {
                 }
               }}
             >
-              <img
-                src={work.image}
-                alt={work.title || `Slide ${index}`}
-                className={`object-cover ${
-                  isCenter
-                    ? "w-[280px] h-[200px] sm:w-[400px] sm:h-[280px] md:w-[600px] md:h-[360px] lg:w-[800px] lg:h-[480px]"
-                    : isNearCenter
-                    ? "w-[240px] h-[170px] sm:w-[350px] sm:h-[245px] md:w-[500px] md:h-[300px] lg:w-[700px] lg:h-[420px]"
-                    : "w-[200px] h-[140px] sm:w-[300px] sm:h-[210px] md:w-[400px] md:h-[240px] lg:w-[750px] lg:h-[300px]"
-                }`}
-              />
+              {/* Shimmer shows behind the image until it decodes */}
+              <div className="relative w-full h-full skeleton-shimmer animate-shimmer">
+                <Image
+                  src={work.image}
+                  alt={work.title || `Slide ${index}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 238px, (max-width: 768px) 340px, (max-width: 1024px) 510px, 680px"
+                />
+              </div>
 
               {/* Category Tag - Top Left */}
               <div className="absolute top-1 left-1 md:top-2 md:left-2 z-10">

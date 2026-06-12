@@ -1,35 +1,47 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+
+const words = ["INSTALLATION", "REPAIR", "MAINTENANCE"];
 
 const HeroText = () => {
-    const words = ["INSTALLATION", "REPAIR", "MAINTENANCE"];
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [phase, setPhase] = useState('in');
+    const fallbackRef = useRef(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => 
-                prevIndex === words.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 2000); // Changes word every 2 seconds
+        const id = setInterval(() => {
+            setPhase('out');
+            // Fallback for prefers-reduced-motion: onAnimationEnd never fires
+            // when animation:none is active, so advance the word by timer instead.
+            fallbackRef.current = setTimeout(() => {
+                setCurrentIndex(i => (i + 1) % words.length);
+                setPhase('in');
+            }, 350);
+        }, 2000);
+        return () => {
+            clearInterval(id);
+            clearTimeout(fallbackRef.current);
+        };
+    }, []);
 
-        return () => clearInterval(interval);
-    });
+    const handleAnimationEnd = () => {
+        if (phase === 'out') {
+            clearTimeout(fallbackRef.current);
+            setCurrentIndex(i => (i + 1) % words.length);
+            setPhase('in');
+        }
+    };
 
     return (
         <div className="text-5xl md:text-6xl xl:text-7xl font-rubik h-24 flex items-center justify-start font-medium">
-            <AnimatePresence mode="wait">
-                <motion.span
-                    key={currentIndex}
-                    className="bg-gradient-to-r from-start to-end text-transparent bg-clip-text"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {words[currentIndex]}
-                </motion.span>
-            </AnimatePresence>
+            <span
+                onAnimationEnd={handleAnimationEnd}
+                className={`bg-gradient-to-r from-start to-end text-transparent bg-clip-text ${
+                    phase === 'in' ? 'animate-word-in' : 'animate-word-out'
+                }`}
+            >
+                {words[currentIndex]}
+            </span>
         </div>
     );
 }

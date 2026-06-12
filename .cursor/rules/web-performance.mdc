@@ -1,0 +1,113 @@
+---
+description: >-
+  Project-specific web performance rules for metrogaragesolutions.com. Apply
+  when editing Hero, Carousel, or any component touching images, video, fonts,
+  data fetching, or bundle size. Complements the global web-performance skill.
+globs: >-
+  src/app/**/*.{js,jsx},
+  src/app/components/**/*.{js,jsx}
+alwaysApply: false
+---
+
+# Metro Garage Solutions — Web Performance
+
+## Stack
+
+- **Next.js 15.0.3** + **React 19 RC** — App Router, JavaScript (no TypeScript)
+- **Single-page app** with hash sections: `#about`, `#services`, `#works`, `#contact`
+- **Domain:** `https://metrogaragesolutions.com`
+
+---
+
+## Key Files
+
+| Purpose | File |
+|---------|------|
+| Root layout | `src/app/layout.js` |
+| Hero (video + LCP image) | `src/app/components/Hero.jsx` |
+| Carousel (image gallery) | `src/app/components/Carousel.jsx` |
+| Global styles | `src/app/globals.css` |
+| Google Analytics | loaded via `@next/third-parties/google` in `layout.js` |
+
+---
+
+## What's Already Implemented
+
+- `next/image` in Carousel — do not revert to raw `<img>`
+- Adaptive video loading in Hero based on device type — preserve this pattern
+- Fonts via `next/font/google` (Montserrat, Comfortaa, Rubik) — no render-blocking `@import`
+- Google Analytics via `@next/third-parties/google` — production-gated on `NEXT_PUBLIC_GA_TRACKING_ID`
+
+**Do not duplicate or undo any of the above.**
+
+---
+
+## Priority Checks for This Project
+
+### 1. Hero LCP (Critical)
+
+The Hero component contains the page's LCP element. When editing it:
+
+- The above-fold image or video poster must have `priority` set — never `loading="lazy"` on it
+- Video should stay adaptive (mobile vs desktop) — do not flatten to a single source
+- Verify the hero image has explicit `width`/`height` or a sized container to prevent CLS
+
+### 2. Carousel Images (High)
+
+- Every `next/image` in Carousel must have a correct `sizes` prop matching the CSS layout width
+- Missing or wrong `sizes` causes the browser to download full-resolution images for thumbnails
+- Example: `sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"`
+
+### 3. Google Analytics Script (High)
+
+- `@next/third-parties/google` already defers GA correctly — do not add a raw `<script>` tag alongside it
+- If adding any other third-party script, use `next/script` with `strategy="lazyOnload"` or `"afterInteractive"`
+
+### 4. Bundle Size (High)
+
+- This is a JS-heavy single-page app; every new dependency counts
+- Check bundle cost with `npx bundlephobia <package>` before installing
+- Prefer direct imports over barrel imports (e.g., `lucide-react/dist/esm/icons/X` not `lucide-react`)
+
+### 5. `"use client"` Placement (High)
+
+- Keep `"use client"` on leaf interactive components only (buttons, form inputs, modals)
+- Never add `"use client"` to layout-level components — it ships the whole subtree as client JS
+
+---
+
+## Project Conventions
+
+**JavaScript, not TypeScript.** Use `.js` / `.jsx` extensions — no type annotations.
+
+**No TypeScript-only patterns** — `React.memo`, hooks, and dynamic imports all work the same in JS.
+
+**Dynamic imports for heavy components:**
+```js
+import dynamic from 'next/dynamic';
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <div className="skeleton" />,
+});
+// Only add ssr: false if the component uses browser-only APIs (window, canvas)
+```
+
+---
+
+## Quick Audit Checklist
+
+Before shipping any change that touches Hero, Carousel, or layout:
+
+- [ ] Hero LCP image/video poster has `priority` (not `loading="lazy"`)
+- [ ] All `next/image` instances have explicit `width`/`height` or a `fill` container with `aspectRatio`
+- [ ] All `next/image` instances have a correct `sizes` prop
+- [ ] No new `<img>` tags (use `next/image`)
+- [ ] No new `<link href="fonts.googleapis.com">` (fonts are via `next/font`)
+- [ ] No new raw `<script>` tags (use `next/script` with a `strategy`)
+- [ ] `"use client"` is only on leaf components, not layouts or pages
+
+---
+
+## Skill Reference
+
+For full lever-by-lever guidance (waterfalls, bundle analysis, caching, ISR, re-renders, CLS), invoke the `web-performance` skill.

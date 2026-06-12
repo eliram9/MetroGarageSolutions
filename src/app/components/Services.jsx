@@ -10,11 +10,11 @@ const Services = () => {
     return (
         <section id='services' className='bg-rose-s100' aria-labelledby="services-heading">
             <header className="relative w-full font-rubik py-6">
-                <Image src="/images/obligation.png" 
+                <Image src="/images/obligation.png"
                        alt="Professional garage door service team at work in Rockville MD"
                        className="absolute inset-0 z-0"
                        fill
-                       priority
+                       loading="eager"
                 />
 
                 <div className="absolute inset-0 bg-primary/65" aria-hidden="true"></div>
@@ -26,10 +26,9 @@ const Services = () => {
                             just call us at <a href="tel:240-688-8858" className='font-semibold hover:underline'>240.688.8858</a> or click on the button below.</p>
 
                         
-                        {/* Elfsight Google Reviews | Untitled Google Reviews */}
-                        <div className='py-10 w-full max-w-full overflow-hidden'>
+                        {/* Elfsight Google Reviews — platform.js loaded once via next/script in FAQ */}
+                        <div className='py-10 w-full max-w-full overflow-hidden min-h-[200px]'>
                             <div className="max-w-xs mx-auto sm:max-w-sm md:max-w-full" style={{maxWidth: '100%', overflow: 'hidden'}}>
-                                <script src="https://static.elfsight.com/platform/platform.js" async></script>
                                 <div className="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c" data-elfsight-app-lazy></div>
                             </div>
                         </div>    

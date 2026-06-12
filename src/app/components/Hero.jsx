@@ -1,39 +1,51 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroText from './HeroText';
 import Container from './Container';
 
 
 const Hero = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const [isMobile, setIsMobile] = useState(null);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // null until the first client-side measurement so we never start
+    // downloading the wrong video on desktop
+    const videoSrc = isMobile === null
+        ? null
+        : isMobile
+            ? '/images/hero_video.mp4'
+            : '/images/hero_video_desktop.mp4';
 
     return (
         <section className='relative h-[70vh] sm:h-[75vh] md:h-[80vh] flex items-center overflow-hidden font-rubik' aria-labelledby="hero-heading">
-            {/* Skeleton Loading Animation */}
-            {!videoLoaded && (
-                <div className="absolute top-0 left-0 w-full h-full bg-gray-200 dark:bg-gray-700">
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                    <div className="absolute top-0 left-0 w-full h-full">
-                        <div className="animate-shimmer bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 bg-[length:200%_100%] w-full h-full"></div>
-                    </div>
-                </div>
-            )}
-
-            <video 
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src="/images/hero_video.mp4"
-                autoPlay 
-                loop 
-                muted
-                playsInline
+            {/* Skeleton shimmer — shown until the hero video can play */}
+            <div
                 aria-hidden="true"
-                onLoadedData={() => setVideoLoaded(true)}
-                onCanPlay={() => setVideoLoaded(true)}
-            >
-                <source src="/images/hero_video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+                className={`absolute inset-0 skeleton-shimmer animate-shimmer transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+            />
+
+            {videoSrc && (
+                <video
+                    key={videoSrc}
+                    className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-hidden="true"
+                    onLoadedData={() => setVideoLoaded(true)}
+                    onCanPlay={() => setVideoLoaded(true)}
+                />
+            )}
 
             <Container>
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#002C8C] to-transparent" aria-hidden="true"></div>
@@ -56,7 +68,7 @@ const Hero = () => {
                         </a>
                     </nav>
 
-                </header> 
+                </header>
             </Container>
         </section>
     );
