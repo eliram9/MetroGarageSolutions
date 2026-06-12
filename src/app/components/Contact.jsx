@@ -60,10 +60,11 @@ const Contact = () => {
             newErrors.email = 'Please enter a valid email address (e.g., name@domain.com)';
         }
         
-        // Phone validation (10 digits only)
+        // Phone validation (10 digits, optional US country code from autofill)
+        const phoneDigits = formData.phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
         if (!formData.phone.trim()) {
             newErrors.phone = 'Phone number is required';
-        } else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
+        } else if (!/^\d{10}$/.test(phoneDigits)) {
             newErrors.phone = 'Phone number must contain exactly 10 digits';
         }
         
@@ -103,7 +104,11 @@ const Contact = () => {
                 email: formData.email,
                 phone: formData.phone,
                 service: formData.service,
-                message: formData.message
+                message: formData.message,
+                // Aliases matching EmailJS default template variables
+                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_email: formData.email,
+                reply_to: formData.email
             };
             
             await emailjs.send(
@@ -141,21 +146,6 @@ const Contact = () => {
         }
     };
 
-    const isFormValid = () => {
-        return (
-            formData.firstName.trim() && 
-            formData.lastName.trim() && 
-            formData.email.trim() && 
-            formData.phone.trim() && 
-            formData.message.trim() && 
-            formData.firstName.trim().length >= 2 &&
-            formData.lastName.trim().length >= 2 &&
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
-            /^\d{10}$/.test(formData.phone.replace(/\D/g, '')) &&
-            formData.message.trim().length >= 3
-        );
-    };
-
     return (
         <section id="contact" className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors">
             {/* Contact Form Section */}
@@ -182,7 +172,7 @@ const Contact = () => {
                                         <p className="text-gray-600 dark:text-gray-300 transition-colors">{`Fill out the form below and we'll get back to you within 24 hours.`}</p>
                                     </div>
 
-                                    <form onSubmit={handleSubmit} className="space-y-6">
+                                    <form onSubmit={handleSubmit} autoComplete="on" className="space-y-6">
                                         {/* Name Fields */}
                                         <div className="grid md:grid-cols-2 gap-6">
                                             <div>
@@ -193,6 +183,7 @@ const Contact = () => {
                                                     type="text"
                                                     id="firstName"
                                                     name="firstName"
+                                                    autoComplete="given-name"
                                                     value={formData.firstName}
                                                     onChange={handleInputChange}
                                                     className={`w-full px-4 py-3 border-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 
@@ -221,6 +212,7 @@ const Contact = () => {
                                                     type="text"
                                                     id="lastName"
                                                     name="lastName"
+                                                    autoComplete="family-name"
                                                     value={formData.lastName}
                                                     onChange={handleInputChange}
                                                     className={`w-full px-4 py-3 border-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 
@@ -252,6 +244,7 @@ const Contact = () => {
                                                     type="email"
                                                     id="email"
                                                     name="email"
+                                                    autoComplete="email"
                                                     value={formData.email}
                                                     onChange={handleInputChange}
                                                     className={`w-full px-4 py-3 border-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 
@@ -280,6 +273,8 @@ const Contact = () => {
                                                     type="tel"
                                                     id="phone"
                                                     name="phone"
+                                                    autoComplete="tel"
+                                                    inputMode="tel"
                                                     value={formData.phone}
                                                     onChange={handleInputChange}
                                                     className={`w-full px-4 py-3 border-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 
@@ -367,11 +362,11 @@ const Contact = () => {
                                         <div className="pt-4">
                                             <button
                                                 type="submit"
-                                                disabled={isSubmitting || !isFormValid()}
-                                                className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 
+                                                disabled={isSubmitting}
+                                                className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300
                                                     focus:outline-none focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900
-                                                    ${isSubmitting || !isFormValid()
-                                                        ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed' 
+                                                    ${isSubmitting
+                                                        ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                                                         : 'bg-gradient-to-r from-primary to-secondaryBlue text-white hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]'
                                                     }`}
                                             >
