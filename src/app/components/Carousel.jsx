@@ -67,7 +67,7 @@ const Carousel = ({ activeCategory }) => {
   if (works.length === 0) {
     return (
       <div className="relative w-full mx-auto overflow-hidden">
-        <div className="flex justify-center items-center h-[300px] md:h-[400px] lg:h-[600px] relative">
+        <div className="flex justify-center items-center h-[250px] md:h-[335px] lg:h-[500px] relative">
           <div className="text-center p-8 md:p-12 lg:p-16">
             <div className="bg-gradient-to-br from-primary to-red rounded-2xl p-8 md:p-12 lg:p-16 shadow-2xl max-w-md mx-auto">
               <div className="text-white mb-4">
@@ -90,7 +90,7 @@ const Carousel = ({ activeCategory }) => {
 
   return (
     <div className="relative w-full mx-auto overflow-hidden">
-      <div className="flex justify-center items-center h-[300px] md:h-[400px] lg:h-[600px] relative">
+      <div className="flex justify-center items-center h-[255px] md:h-[340px] lg:h-[510px] relative">
         <AnimatePresence>
           {visibleImages.map((work, index) => {
             const position = work.position;
@@ -100,12 +100,12 @@ const Carousel = ({ activeCategory }) => {
             return (
               <motion.div
                 key={work.id}
-              className={`absolute rounded-lg overflow-hidden cursor-pointer transition-shadow duration-300 ${
+              className={`absolute rounded-lg overflow-hidden cursor-pointer transition-shadow duration-300 border border-gray-200 dark:border-gray-600 ${
                 isCenter
-                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 w-[280px] h-[200px] sm:w-[400px] sm:h-[280px] md:w-[600px] md:h-[360px] lg:w-[800px] lg:h-[480px]'
+                  ? 'shadow-2xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 w-[238px] h-[170px] sm:w-[340px] sm:h-[238px] md:w-[510px] md:h-[306px] lg:w-[680px] lg:h-[408px]'
                   : isNearCenter
-                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20 w-[240px] h-[170px] sm:w-[350px] sm:h-[245px] md:w-[500px] md:h-[300px] lg:w-[700px] lg:h-[420px]'
-                  : 'shadow-lg shadow-gray-900/20 w-[200px] h-[140px] sm:w-[300px] sm:h-[210px] md:w-[400px] md:h-[240px] lg:w-[750px] lg:h-[300px]'
+                  ? 'shadow-xl shadow-gray-900/30 hover:shadow-xl hover:shadow-primary/20 w-[204px] h-[145px] sm:w-[298px] sm:h-[208px] md:w-[425px] md:h-[255px] lg:w-[595px] lg:h-[357px]'
+                  : 'shadow-lg shadow-gray-900/20 w-[170px] h-[119px] sm:w-[255px] sm:h-[179px] md:w-[340px] md:h-[204px] lg:w-[638px] lg:h-[255px]'
               }`}
               initial={{ opacity: 0 }}
               animate={{
@@ -130,7 +130,7 @@ const Carousel = ({ activeCategory }) => {
                   alt={work.title || `Slide ${index}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, (max-width: 1024px) 600px, 800px"
+                  sizes="(max-width: 640px) 238px, (max-width: 768px) 340px, (max-width: 1024px) 510px, 680px"
                 />
               </div>
 

@@ -14,6 +14,7 @@ const Services = () => {
                        alt="Professional garage door service team at work in Rockville MD"
                        className="absolute inset-0 z-0"
                        fill
+                       loading="eager"
                 />
 
                 <div className="absolute inset-0 bg-primary/65" aria-hidden="true"></div>
