@@ -124,12 +124,12 @@ const Carousel = ({ activeCategory }) => {
               }}
             >
               {/* Shimmer shows behind the image until it decodes */}
-              <div className="relative w-full h-full skeleton-shimmer animate-shimmer">
+              <div className="relative w-full h-full skeleton-shimmer">
                 <Image
                   src={work.image}
                   alt={work.title || `Slide ${index}`}
                   fill
-                  className="object-cover"
+                  className="object-cover z-[1]"
                   sizes="(max-width: 640px) 238px, (max-width: 768px) 340px, (max-width: 1024px) 510px, 680px"
                 />
               </div>
@@ -165,25 +165,32 @@ const Carousel = ({ activeCategory }) => {
       <div className="flex justify-center items-center mt-4 md:mt-6 space-x-3 md:space-x-4">
         <button
           onClick={prevSlide}
+          aria-label="Previous image"
           className="w-8 h-8 md:w-9 md:h-9 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors p-0 text-sm md:text-base"
         >
           {"<"}
         </button>
 
-        <div className="flex space-x-1 md:space-x-2">
+        <div className="flex">
           {works.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all ${
-                index === currentIndex ? "bg-red scale-125" : "bg-gray-300 hover:bg-gray-400"
-              }`}
-            />
+              aria-label={`Go to image ${index + 1}`}
+              className="w-6 h-6 flex items-center justify-center"
+            >
+              <span
+                className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all ${
+                  index === currentIndex ? "bg-red scale-125" : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            </button>
           ))}
         </div>
 
         <button
           onClick={nextSlide}
+          aria-label="Next image"
           className="w-8 h-8 md:w-9 md:h-9 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors p-0 text-sm md:text-base"
         >
           {">"}

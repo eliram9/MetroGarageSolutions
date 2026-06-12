@@ -106,11 +106,24 @@ textarea:-webkit-autofill:active {
 }
 
 @layer utilities {
-  /* Skeleton shimmer surface — pair with `animate-shimmer`.
+  /* Skeleton shimmer surface — the moving sheen animates `transform` on a
+     pseudo-element so it stays GPU-composited (no main-thread repaints).
      Dark grays keep white overlay text readable in both themes. */
   .skeleton-shimmer {
-    background: linear-gradient(110deg, #374151 35%, #4b5563 50%, #374151 65%);
-    background-size: 200% 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #374151;
+  }
+  .skeleton-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shimmerSlide 2s ease-in-out infinite;
+  }
+  @keyframes shimmerSlide {
+    100% { transform: translateX(100%); }
   }
 
   /* Brand duotone image treatment for the About hero image */
@@ -150,7 +163,7 @@ textarea:-webkit-autofill:active {
   .img-zoomable { animation: none; }
   .animate-word-in,
   .animate-word-out { animation: none; opacity: 1; }
-  .animate-shimmer { animation: none; }
+  .skeleton-shimmer::after { animation: none; }
 }
 
 @layer components {

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Script from 'next/script';
 import Container from "./Container";
+import ElfsightWidget from './ElfsightWidget';
 import faqs from '../../data/faqs';
 
 const FAQ = () => {
@@ -24,14 +24,10 @@ const FAQ = () => {
                         </p>
                     </div>
                     <div className="w-full max-w-full overflow-hidden min-h-64">
-                        <Script
-                            id="elfsight-platform"
-                            src="https://static.elfsight.com/platform/platform.js"
-                            strategy="lazyOnload"
+                        <ElfsightWidget
+                            appClass="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6"
+                            className="max-w-6xl mx-auto"
                         />
-                        <div className="max-w-6xl mx-auto">
-                            <div className="elfsight-app-faf1dc23-891b-4d19-a32d-e8a44462f0c6" data-elfsight-app-lazy></div>
-                        </div>
                     </div>
                 </div>
             </Container>

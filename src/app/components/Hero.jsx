@@ -8,6 +8,7 @@ import Container from './Container';
 const Hero = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(null);
+    const [pageLoaded, setPageLoaded] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -16,9 +17,21 @@ const Hero = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
+    // Start the video download only after the page has loaded so the
+    // multi-MB file doesn't compete with text, fonts, and CSS
+    useEffect(() => {
+        if (document.readyState === 'complete') {
+            setPageLoaded(true);
+            return;
+        }
+        const onLoad = () => setPageLoaded(true);
+        window.addEventListener('load', onLoad);
+        return () => window.removeEventListener('load', onLoad);
+    }, []);
+
     // null until the first client-side measurement so we never start
     // downloading the wrong video on desktop
-    const videoSrc = isMobile === null
+    const videoSrc = !pageLoaded || isMobile === null
         ? null
         : isMobile
             ? '/images/hero_video.mp4'
@@ -29,7 +42,7 @@ const Hero = () => {
             {/* Skeleton shimmer — shown until the hero video can play */}
             <div
                 aria-hidden="true"
-                className={`absolute inset-0 skeleton-shimmer animate-shimmer transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 skeleton-shimmer transition-opacity duration-500 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
             />
 
             {videoSrc && (

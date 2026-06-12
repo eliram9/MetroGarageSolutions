@@ -5,6 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import Container from './Container';
 import BrandTrain from './BrandTrain';
+import ElfsightWidget from './ElfsightWidget';
 
 const Services = () => {
     return (
@@ -26,11 +27,12 @@ const Services = () => {
                             just call us at <a href="tel:240-688-8858" className='font-semibold hover:underline'>240.688.8858</a> or click on the button below.</p>
 
                         
-                        {/* Elfsight Google Reviews — platform.js loaded once via next/script in FAQ */}
+                        {/* Elfsight Google Reviews — script loads only when scrolled near */}
                         <div className='py-10 w-full max-w-full overflow-hidden min-h-[200px]'>
-                            <div className="max-w-xs mx-auto sm:max-w-sm md:max-w-full" style={{maxWidth: '100%', overflow: 'hidden'}}>
-                                <div className="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c" data-elfsight-app-lazy></div>
-                            </div>
+                            <ElfsightWidget
+                                appClass="elfsight-app-b505707f-ef1e-44ba-9085-001e0913ad5c"
+                                className="max-w-xs mx-auto sm:max-w-sm md:max-w-full overflow-hidden"
+                            />
                         </div>    
                         <button 
                             onClick={() => {

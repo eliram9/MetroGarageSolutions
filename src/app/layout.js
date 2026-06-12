@@ -100,10 +100,6 @@ export default function RootLayout({ children }) {
                     }}
                 />
 
-                {/* Preconnect to external domains for performance */}
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
-                <link rel="preconnect" href="https://static.elfsight.com" />
-
                 {/* Properly sized favicons */}
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
