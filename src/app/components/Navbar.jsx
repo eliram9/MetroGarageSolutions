@@ -141,16 +141,16 @@ const Navbar = () => {
                         </Link>
                         {/* Desktop Nav Links */}
                         <nav className="hidden md:flex space-x-8 items-center">
-                            <NavLink href="#about" active={activeSection === 'about'}>
+                            <NavLink href="/#about" active={activeSection === 'about'}>
                                 About
                             </NavLink>
-                            <NavLink href="#services" active={activeSection === 'services'}>
+                            <NavLink href="/#services" active={activeSection === 'services'}>
                                 Services
                             </NavLink>
-                            <NavLink href="#works" active={activeSection === 'works'}>
+                            <NavLink href="/#works" active={activeSection === 'works'}>
                                 Our Work
                             </NavLink>
-                            <NavLink href="#contact" active={activeSection === 'contact'}>
+                            <NavLink href="/#contact" active={activeSection === 'contact'}>
                                 Contact
                             </NavLink>
                             <ThemeSwitcher />
@@ -192,16 +192,16 @@ const Navbar = () => {
 
                         {/* Navigation Links */}
                         <div className="flex flex-col px-6 space-y-6">
-                            <NavLink href="#about" active={activeSection === 'about'} onClick={() => setMobileMenuOpen(false)} mobile>
+                            <NavLink href="/#about" active={activeSection === 'about'} onClick={() => setMobileMenuOpen(false)} mobile>
                                 About
                             </NavLink>
-                            <NavLink href="#services" active={activeSection === 'services'} onClick={() => setMobileMenuOpen(false)} mobile>
+                            <NavLink href="/#services" active={activeSection === 'services'} onClick={() => setMobileMenuOpen(false)} mobile>
                                 Services
                             </NavLink>
-                            <NavLink href="#works" active={activeSection === 'works'} onClick={() => setMobileMenuOpen(false)} mobile>
+                            <NavLink href="/#works" active={activeSection === 'works'} onClick={() => setMobileMenuOpen(false)} mobile>
                                 Our Work
                             </NavLink>
-                            <NavLink href="#contact" active={activeSection === 'contact'} onClick={() => setMobileMenuOpen(false)} mobile>
+                            <NavLink href="/#contact" active={activeSection === 'contact'} onClick={() => setMobileMenuOpen(false)} mobile>
                                 Contact
                             </NavLink>
 

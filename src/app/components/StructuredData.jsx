@@ -7,7 +7,7 @@ const StructuredData = () => {
         "@id": "https://metrogaragesolutions.com/#business",
         "name": "Metro Garage Solutions",
         "alternateName": "Metro Garage Solutions LLC",
-        "description": "Professional garage door installation, repair, and maintenance services in Rockville, MD and Washington DC metropolitan area. Family-owned business providing quality guaranteed services.",
+        "description": "Family-owned garage door installation, repair, and maintenance company based in Rockville, MD, serving Rockville, Potomac, North Potomac, Darnestown, Bethesda, Chevy Chase, and Cabin John, MD and Great Falls, McLean, Vienna, and Oakton, VA.",
         "url": "https://metrogaragesolutions.com",
         "telephone": "+1-240-688-8858",
         "email": "info@metrogaragesolutions.com",
@@ -18,6 +18,7 @@ const StructuredData = () => {
         ],
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "365 Congressional Ln",
             "addressLocality": "Rockville",
             "addressRegion": "MD",
             "postalCode": "20852",
@@ -25,8 +26,8 @@ const StructuredData = () => {
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 39.0840,
-            "longitude": -77.1528
+            "latitude": 39.060426,
+            "longitude": -77.132233
         },
         "areaServed": [
             {
@@ -35,6 +36,86 @@ const StructuredData = () => {
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "North Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Darnestown",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Bethesda",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Chevy Chase",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Cabin John",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Great Falls",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Vienna",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Oakton",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
                 }
             },
             {
@@ -72,25 +153,12 @@ const StructuredData = () => {
                 "dayOfWeek": "Friday",
                 "opens": "08:00",
                 "closes": "14:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "00:00",
-                "closes": "00:00"
             }
         ],
         "sameAs": [
             "https://www.facebook.com/metrogaragesolutions",
             "https://www.instagram.com/metrogaragesolutions"
-        ],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "50",
-            "bestRating": "5",
-            "worstRating": "1"
-        }
+        ]
     };
 
     const serviceSchema = {
@@ -108,6 +176,86 @@ const StructuredData = () => {
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "North Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Darnestown",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Bethesda",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Chevy Chase",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Cabin John",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Great Falls",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Vienna",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Oakton",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
                 }
             },
             {
