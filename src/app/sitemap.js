@@ -38,5 +38,41 @@ export default function sitemap() {
             changeFrequency: 'monthly',
             priority: 0.8,
         },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-chevy-chase-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-cabin-john-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-vienna-va',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-north-potomac-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-darnestown-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-oakton-va',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ];
 }

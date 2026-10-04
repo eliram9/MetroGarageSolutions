@@ -7,7 +7,7 @@ const StructuredData = () => {
         "@id": "https://metrogaragesolutions.com/#business",
         "name": "Metro Garage Solutions",
         "alternateName": "Metro Garage Solutions LLC",
-        "description": "Family-owned garage door installation, repair, and maintenance company based in Rockville, MD, serving Rockville, Potomac, and Bethesda, MD and Great Falls and McLean, VA.",
+        "description": "Family-owned garage door installation, repair, and maintenance company based in Rockville, MD, serving Rockville, Potomac, North Potomac, Darnestown, Bethesda, Chevy Chase, and Cabin John, MD and Great Falls, McLean, Vienna, and Oakton, VA.",
         "url": "https://metrogaragesolutions.com",
         "telephone": "+1-240-688-8858",
         "email": "info@metrogaragesolutions.com",
@@ -48,7 +48,39 @@ const StructuredData = () => {
             },
             {
                 "@type": "City",
+                "name": "North Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Darnestown",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
                 "name": "Bethesda",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Chevy Chase",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Cabin John",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
@@ -65,6 +97,22 @@ const StructuredData = () => {
             {
                 "@type": "City",
                 "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Vienna",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Oakton",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Virginia"
@@ -140,7 +188,39 @@ const StructuredData = () => {
             },
             {
                 "@type": "City",
+                "name": "North Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Darnestown",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
                 "name": "Bethesda",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Chevy Chase",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Cabin John",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
@@ -157,6 +237,22 @@ const StructuredData = () => {
             {
                 "@type": "City",
                 "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Vienna",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Oakton",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Virginia"

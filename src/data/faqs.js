@@ -8,12 +8,18 @@ const faqs = [
     },
     {
         question: "What areas do you serve?",
-        answer: "Our main service areas are Rockville, Potomac, and Bethesda in Maryland, and Great Falls and McLean in Virginia. We are based at 365 Congressional Ln in Rockville, MD, and also serve customers elsewhere in the Washington DC metro area.",
+        answer: "Our service areas are Rockville, Potomac, North Potomac, Darnestown, Bethesda, Chevy Chase, and Cabin John in Maryland, and Great Falls, McLean, Vienna, and Oakton in Virginia. We are based at 365 Congressional Ln in Rockville, MD, and also serve customers elsewhere in the Washington DC metro area.",
         links: [
             { href: "/garage-door-repair-potomac-md", label: "Garage door repair in Potomac, MD" },
+            { href: "/garage-door-repair-north-potomac-md", label: "Garage door repair in North Potomac, MD" },
+            { href: "/garage-door-repair-darnestown-md", label: "Garage door repair in Darnestown, MD" },
             { href: "/garage-door-repair-bethesda-md", label: "Garage door repair in Bethesda, MD" },
+            { href: "/garage-door-repair-chevy-chase-md", label: "Garage door repair in Chevy Chase, MD" },
+            { href: "/garage-door-repair-cabin-john-md", label: "Garage door repair in Cabin John, MD" },
             { href: "/garage-door-repair-great-falls-va", label: "Garage door repair in Great Falls, VA" },
             { href: "/garage-door-repair-mclean-va", label: "Garage door repair in McLean, VA" },
+            { href: "/garage-door-repair-vienna-va", label: "Garage door repair in Vienna, VA" },
+            { href: "/garage-door-repair-oakton-va", label: "Garage door repair in Oakton, VA" },
         ]
     },
     {
