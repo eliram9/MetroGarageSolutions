@@ -18,6 +18,7 @@ const StructuredData = () => {
         ],
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "365 Congressional Ln",
             "addressLocality": "Rockville",
             "addressRegion": "MD",
             "postalCode": "20852",
@@ -25,13 +26,29 @@ const StructuredData = () => {
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 39.0840,
-            "longitude": -77.1528
+            "latitude": 39.060426,
+            "longitude": -77.132233
         },
         "areaServed": [
             {
                 "@type": "City",
                 "name": "Rockville",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Bethesda",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
@@ -72,25 +89,12 @@ const StructuredData = () => {
                 "dayOfWeek": "Friday",
                 "opens": "08:00",
                 "closes": "14:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "00:00",
-                "closes": "00:00"
             }
         ],
         "sameAs": [
             "https://www.facebook.com/metrogaragesolutions",
             "https://www.instagram.com/metrogaragesolutions"
-        ],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "50",
-            "bestRating": "5",
-            "worstRating": "1"
-        }
+        ]
     };
 
     const serviceSchema = {
@@ -105,6 +109,22 @@ const StructuredData = () => {
             {
                 "@type": "City",
                 "name": "Rockville",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Potomac",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Bethesda",
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
