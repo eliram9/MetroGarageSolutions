@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Container from "./Container";
 import ElfsightWidget from './ElfsightWidget';
 import faqs from '../../data/faqs';
@@ -83,6 +84,17 @@ const FAQ = () => {
                                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {faq.answer}
                                 </p>
+                                {faq.links && (
+                                    <ul className="mt-3 space-y-1">
+                                        {faq.links.map((link) => (
+                                            <li key={link.href}>
+                                                <Link href={link.href} className="font-medium text-[#002C8C] dark:text-blue-300 hover:underline">
+                                                    {link.label}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
                         </article>
                     ))}

@@ -8,7 +8,18 @@ const faqs = [
     },
     {
         question: "What areas do you serve?",
-        answer: "We provide garage door services throughout the Washington DC metropolitan area, with our base in Rockville, MD. We serve customers in Maryland, Virginia, and Washington DC, including surrounding areas within a reasonable distance from our Rockville location."
+        answer: "Our main service areas are Rockville, Potomac, and Bethesda in Maryland, and Great Falls and McLean in Virginia. We are based at 365 Congressional Ln in Rockville, MD, and also serve customers elsewhere in the Washington DC metro area.",
+        links: [
+            { href: "/garage-door-repair-potomac-md", label: "Garage door repair in Potomac, MD" },
+            { href: "/garage-door-repair-bethesda-md", label: "Garage door repair in Bethesda, MD" },
+        ]
+    },
+    {
+        question: "How do I know if my garage door spring is broken?",
+        answer: "The most common sign is a loud bang from the garage, after which the door won't open or the opener lifts it only a few inches. You may also see a gap in the coiled spring above the door, or the door may feel very heavy or hang crooked. Springs are under high tension, so don't try to fix one yourself. Call us at 240-688-8858.",
+        links: [
+            { href: "/broken-garage-door-spring", label: "Broken garage door spring: signs and what to do" },
+        ]
     },
     {
         question: "Do you guarantee your work?",

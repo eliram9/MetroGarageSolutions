@@ -7,7 +7,7 @@ const StructuredData = () => {
         "@id": "https://metrogaragesolutions.com/#business",
         "name": "Metro Garage Solutions",
         "alternateName": "Metro Garage Solutions LLC",
-        "description": "Professional garage door installation, repair, and maintenance services in Rockville, MD and Washington DC metropolitan area. Family-owned business providing quality guaranteed services.",
+        "description": "Family-owned garage door installation, repair, and maintenance company based in Rockville, MD, serving Rockville, Potomac, and Bethesda, MD and Great Falls and McLean, VA.",
         "url": "https://metrogaragesolutions.com",
         "telephone": "+1-240-688-8858",
         "email": "info@metrogaragesolutions.com",
@@ -52,6 +52,22 @@ const StructuredData = () => {
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Great Falls",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
                 }
             },
             {
@@ -128,6 +144,22 @@ const StructuredData = () => {
                 "containedInPlace": {
                     "@type": "State",
                     "name": "Maryland"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "Great Falls",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
+                }
+            },
+            {
+                "@type": "City",
+                "name": "McLean",
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Virginia"
                 }
             },
             {
