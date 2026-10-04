@@ -14,5 +14,11 @@ export default function sitemap() {
             changeFrequency: 'monthly',
             priority: 0.8,
         },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-bethesda-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ];
 }

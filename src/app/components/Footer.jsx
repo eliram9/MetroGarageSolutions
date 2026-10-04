@@ -11,7 +11,8 @@ const Footer = () => {
                     <a href="mailto:info@metrogaragesolutions.com" className="hover:underline">info@metrogaragesolutions.com</a>
                 </p>
                 <nav aria-label="Service areas" className="text-sm lg:text-base font-light">
-                    <Link href="/garage-door-repair-potomac-md" className="hover:underline">Garage Door Repair in Potomac, MD</Link>
+                    <Link href="/garage-door-repair-potomac-md" className="hover:underline">Garage Door Repair in Potomac, MD</Link> ·{' '}
+                    <Link href="/garage-door-repair-bethesda-md" className="hover:underline">Garage Door Repair in Bethesda, MD</Link>
                 </nav>
                 <p className="text-xs lg:text-sm font-light text-white/80">
                     © {new Date().getFullYear()} Metro Garage Solutions. All rights reserved.
