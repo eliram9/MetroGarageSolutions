@@ -12,6 +12,8 @@ const faqs = [
         links: [
             { href: "/garage-door-repair-potomac-md", label: "Garage door repair in Potomac, MD" },
             { href: "/garage-door-repair-bethesda-md", label: "Garage door repair in Bethesda, MD" },
+            { href: "/garage-door-repair-great-falls-va", label: "Garage door repair in Great Falls, VA" },
+            { href: "/garage-door-repair-mclean-va", label: "Garage door repair in McLean, VA" },
         ]
     },
     {
