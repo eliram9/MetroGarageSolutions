@@ -20,5 +20,11 @@ export default function sitemap() {
             changeFrequency: 'monthly',
             priority: 0.8,
         },
+        {
+            url: 'https://metrogaragesolutions.com/broken-garage-door-spring',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ];
 }
