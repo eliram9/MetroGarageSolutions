@@ -65,7 +65,7 @@ const Hero = () => {
 
                 <header className='relative text-white'>
                     <h1 id="hero-heading" className='text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-light'>
-                        <span className="sr-only">Metro Garage Solutions - </span>GARAGE DOOR REPAIR IN ROCKVILLE, MD
+                        <span className="sr-only">Metro Garage Solutions - </span>GARAGE DOOR REPAIR
                     </h1>
                     <div className='h-[100px]' aria-live="polite">
                         <HeroText />
