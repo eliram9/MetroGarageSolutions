@@ -8,5 +8,11 @@ export default function sitemap() {
             changeFrequency: 'monthly',
             priority: 1,
         },
+        {
+            url: 'https://metrogaragesolutions.com/garage-door-repair-potomac-md',
+            lastModified: '2026-10-04',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
     ];
 }

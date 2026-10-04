@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => {
     return (
@@ -9,6 +10,9 @@ const Footer = () => {
                     <a href="tel:+12406888858" className="hover:underline">(240) 688-8858</a> ·{' '}
                     <a href="mailto:info@metrogaragesolutions.com" className="hover:underline">info@metrogaragesolutions.com</a>
                 </p>
+                <nav aria-label="Service areas" className="text-sm lg:text-base font-light">
+                    <Link href="/garage-door-repair-potomac-md" className="hover:underline">Garage Door Repair in Potomac, MD</Link>
+                </nav>
                 <p className="text-xs lg:text-sm font-light text-white/80">
                     © {new Date().getFullYear()} Metro Garage Solutions. All rights reserved.
                 </p>
