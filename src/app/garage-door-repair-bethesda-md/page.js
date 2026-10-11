@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
+import CityStructuredData from "../components/CityStructuredData";
 
 export const metadata = {
     title: "Garage Door Repair in Bethesda, MD",
@@ -29,6 +30,7 @@ const signs = [
 export default function BethesdaRepair() {
     return (
         <main>
+            <CityStructuredData city="Bethesda" state="MD" path="/garage-door-repair-bethesda-md" />
             <Navbar />
             <article className="font-rubik bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-16 md:py-24 transition-colors">
                 <Container>

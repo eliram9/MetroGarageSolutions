@@ -1,5 +1,5 @@
 // Single source of truth for FAQ content — rendered in FAQ.jsx and
-// emitted as FAQPage JSON-LD in StructuredData.jsx so the schema can
+// emitted as FAQPage JSON-LD in HomeStructuredData.jsx so the schema can
 // never drift from the visible answers.
 const faqs = [
     {
