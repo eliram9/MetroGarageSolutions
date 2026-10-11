@@ -9,11 +9,13 @@ import Contact from "./components/Contact";
 import Works from "./components/Works";
 import Container from "./components/Container";
 import FAQ from "./components/FAQ";
+import HomeStructuredData from "./components/HomeStructuredData";
 
 
 export default function Home() {
     return (
         <main>
+            <HomeStructuredData />
             <Navbar />
             <Hero />
             <Container> 
