@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    async redirects() {
+        // Old static-site URLs. `statusCode: 301` (rather than `permanent: true`,
+        // which sends 308) so crawlers see a classic permanent redirect.
+        return [
+            '/garage-door-repair-services.html',
+            '/garage-door-installation-services.html',
+            '/garage-door-maintenance-services.html',
+        ].map((source) => ({ source, destination: '/', statusCode: 301 }));
+    },
     async headers() {
         return [
             {
