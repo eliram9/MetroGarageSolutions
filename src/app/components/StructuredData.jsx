@@ -1,5 +1,5 @@
 // Site-wide schema rendered from layout.js. Homepage-only schema
-// (BreadcrumbList, FAQPage) lives in HomeStructuredData.jsx.
+// (Service, BreadcrumbList, FAQPage) lives in HomeStructuredData.jsx.
 const StructuredData = () => {
     const localBusinessSchema = {
         "@context": "https://schema.org",
@@ -161,152 +161,6 @@ const StructuredData = () => {
         ]
     };
 
-    const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "@id": "https://metrogaragesolutions.com/#services",
-        "serviceType": "Garage Door Services",
-        "provider": {
-            "@id": "https://metrogaragesolutions.com/#business"
-        },
-        "areaServed": [
-            {
-                "@type": "City",
-                "name": "Rockville",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Potomac",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "North Potomac",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Darnestown",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Bethesda",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Chevy Chase",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Cabin John",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Maryland"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Great Falls",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Virginia"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "McLean",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Virginia"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Vienna",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Virginia"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Oakton",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Virginia"
-                }
-            },
-            {
-                "@type": "City",
-                "name": "Washington",
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "District of Columbia"
-                }
-            }
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Garage Door Services",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Garage Door Installation",
-                        "description": "Professional garage door installation services for residential and commercial properties"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Garage Door Repair",
-                        "description": "Expert garage door repair services including springs, cables, and opener repairs"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Garage Door Maintenance",
-                        "description": "Regular maintenance services to keep your garage door operating smoothly"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Garage Door Opener Services",
-                        "description": "Installation, repair, and maintenance of garage door openers"
-                    }
-                }
-            ]
-        }
-    };
-
     const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -334,12 +188,6 @@ const StructuredData = () => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(localBusinessSchema),
-                }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(serviceSchema),
                 }}
             />
             <script
