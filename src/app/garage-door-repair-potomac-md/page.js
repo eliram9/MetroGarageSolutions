@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Potomac, MD",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-potomac-md',
     },
 };
+
+const town = getTown("potomac-md");
 
 const repairs = [
     "Broken torsion and extension springs",
@@ -45,6 +49,8 @@ export default function PotomacRepair() {
                                 to schedule a garage door or opener repair at your Potomac home.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="potomac-area">
                             <h2 id="potomac-area" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -79,22 +85,14 @@ export default function PotomacRepair() {
                             </h2>
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 Estimates are free and come with no obligation. We go over the cost with you
-                                before any work starts, and we aim for same-day or next-day visits on most
-                                repair calls. Metro Garage Solutions is licensed under MHIC #05-147422, and we
-                                stand behind our workmanship and parts.
+                                before any work starts. Metro Garage Solutions is licensed under MHIC #05-147422.
                             </p>
                         </section>
 
-                        <section className="mt-12" aria-labelledby="potomac-hours">
-                            <h2 id="potomac-hours" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
-                                Hours
-                            </h2>
-                            <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday – Thursday</dt><dd>9:00 AM – 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM – 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
-                        </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Ready to book? Call{' '}

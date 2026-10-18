@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Cabin John, MD",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-cabin-john-md',
     },
 };
+
+const town = getTown("cabin-john-md");
 
 const noiseCauses = [
     ["Grinding or squealing", "Worn or dry rollers and hinges. Replacing steel rollers with nylon ones and lubricating the hardware usually quiets the door."],
@@ -43,6 +47,8 @@ export default function CabinJohnRepair() {
                                 and we&rsquo;ll schedule a free estimate.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="cj-noise">
                             <h2 id="cj-noise" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -82,15 +88,13 @@ export default function CabinJohnRepair() {
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 Metro Garage Solutions is a family-owned company based at 365 Congressional Ln in
                                 Rockville, MD, licensed under MHIC #05-147422. Estimates are free with no
-                                obligation, you approve the price before we begin, and we warranty our parts and
-                                workmanship. We aim to reach most repair calls the same day or the next.
+                                obligation, and you approve the price before we begin.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday - Thursday</dt><dd>9:00 AM - 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM - 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}

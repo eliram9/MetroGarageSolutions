@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Great Falls, VA",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-great-falls-va',
     },
 };
+
+const town = getTown("great-falls-va");
 
 const checks = [
     "Replace the batteries in your remote or wall keypad.",
@@ -43,6 +47,8 @@ export default function GreatFallsRepair() {
                                 We&rsquo;ll talk through the problem and schedule a visit.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="gf-fixes">
                             <h2 id="gf-fixes" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -93,15 +99,13 @@ export default function GreatFallsRepair() {
                             </h2>
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 Estimates are free with no obligation, and we discuss the cost with you before
-                                any work begins. We aim to get to most repair calls the same day or the next,
-                                and our parts and workmanship are covered by warranty.
+                                any work begins.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday - Thursday</dt><dd>9:00 AM - 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM - 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}
