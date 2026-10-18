@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Vienna, VA",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-vienna-va',
     },
 };
+
+const town = getTown("vienna-va");
 
 const wontClose = [
     ["Safety sensors are blocked or misaligned", "The two sensors near the floor must face each other with nothing in between. If one has been knocked out of line or its lens is dirty, the opener will stop and reverse."],
@@ -43,6 +47,8 @@ export default function ViennaRepair() {
                                 to set up a free estimate.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="vienna-close">
                             <h2 id="vienna-close" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -85,16 +91,14 @@ export default function ViennaRepair() {
                             </h2>
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 We&rsquo;re a family-owned company based at 365 Congressional Ln in Rockville, MD.
-                                The estimate is free and carries no obligation, the cost is agreed before work
-                                starts, and parts and workmanship are under warranty. We aim to get to most
-                                repair calls the same day or the next.
+                                The estimate is free and carries no obligation, and the cost is agreed before
+                                work starts.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday - Thursday</dt><dd>9:00 AM - 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM - 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}

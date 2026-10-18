@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Bethesda, MD",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-bethesda-md',
     },
 };
+
+const town = getTown("bethesda-md");
 
 const signs = [
     "A loud bang from the garage, followed by a door that won't lift — usually a broken spring",
@@ -45,6 +49,8 @@ export default function BethesdaRepair() {
                                 and tell us what it&rsquo;s doing — we&rsquo;ll set up a time to come take a look.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="bethesda-signs">
                             <h2 id="bethesda-signs" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -86,16 +92,14 @@ export default function BethesdaRepair() {
                             </h2>
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 There&rsquo;s no charge for an estimate and no commitment to book. You&rsquo;ll know
-                                the cost before we begin, and most repair calls get a visit the same day
-                                or the next. We hold Maryland Home Improvement Commission license
-                                #05-147422 and warranty our work and parts.
+                                the cost before we begin. We hold Maryland Home Improvement Commission
+                                license #05-147422.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday – Thursday</dt><dd>9:00 AM – 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM – 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}

@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in North Potomac, MD",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-north-potomac-md',
     },
 };
+
+const town = getTown("north-potomac-md");
 
 export default function NorthPotomacRepair() {
     return (
@@ -36,6 +40,8 @@ export default function NorthPotomacRepair() {
                                 North Potomac sits just west of our Rockville shop.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="np-life">
                             <h2 id="np-life" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -70,16 +76,14 @@ export default function NorthPotomacRepair() {
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 Cables, rollers, hinges, tracks, panels, openers, remotes, keypads, and safety
                                 sensors, on LiftMaster, Chamberlain, Genie, Clopay, Amarr, Wayne Dalton, and most
-                                other major brands. We&rsquo;re family-owned, licensed under MHIC #05-147422, and
-                                warranty our parts and workmanship. Most repair calls are seen the same day or
-                                the next, and the cost is agreed before we start.
+                                other major brands. We&rsquo;re family-owned and licensed under MHIC #05-147422,
+                                and the cost is agreed before we start.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday - Thursday</dt><dd>9:00 AM - 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM - 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}

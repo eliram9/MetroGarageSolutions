@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Container from "../components/Container";
 import CityStructuredData from "../components/CityStructuredData";
+import { TownServices, TownFAQ, TownReviews, TownHours } from "../components/TownGeoBlocks";
+import { getTown } from "../../data/towns";
 
 export const metadata = {
     title: "Garage Door Repair in Oakton, VA",
@@ -17,6 +19,8 @@ export const metadata = {
         url: 'https://metrogaragesolutions.com/garage-door-repair-oakton-va',
     },
 };
+
+const town = getTown("oakton-va");
 
 const tuneUp = [
     "Balance test, to confirm the springs are carrying the door's weight",
@@ -44,6 +48,8 @@ export default function OaktonRepair() {
                                 for garage door repair and maintenance.
                             </p>
                         </header>
+
+                        <TownServices town={town} />
 
                         <section className="mt-12" aria-labelledby="oak-track">
                             <h2 id="oak-track" className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white">
@@ -81,16 +87,14 @@ export default function OaktonRepair() {
                             <p className="mt-4 text-base md:text-lg font-light leading-relaxed">
                                 We&rsquo;re a family-owned garage door company based at 365 Congressional Ln in
                                 Rockville, MD. We service LiftMaster, Chamberlain, Genie, Clopay, Amarr, Wayne
-                                Dalton, and most other major brands. Estimates are free, the price is agreed
-                                before work starts, parts and workmanship are warrantied, and we aim to reach
-                                most repair calls the same day or the next.
+                                Dalton, and most other major brands. Estimates are free, and the price is agreed
+                                before work starts.
                             </p>
-                            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-base md:text-lg font-light">
-                                <dt>Sunday - Thursday</dt><dd>9:00 AM - 8:00 PM</dd>
-                                <dt>Friday</dt><dd>8:00 AM - 2:00 PM</dd>
-                                <dt>Saturday</dt><dd>Closed</dd>
-                            </dl>
                         </section>
+
+                        <TownFAQ town={town} />
+                        <TownReviews town={town} />
+                        <TownHours town={town} />
 
                         <p className="mt-12 text-base md:text-lg font-light">
                             Call{' '}
